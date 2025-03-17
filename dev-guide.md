@@ -13,7 +13,7 @@ At least one team member MUST review pull requests (PRs) before merging. Focus o
 ### Commit Messages: 
 Write clear, concise messages (e.g., "Add user authentication endpoint" or "Fix bug in payment form validation").
 
-- `BD-1: change add friend button color`
+  - `BD-1: change add friend button color`
 
 ## Coding Standards
 
