@@ -13,6 +13,8 @@ At least one team member MUST review pull requests (PRs) before merging. Focus o
 ### Commit Messages: 
 Write clear, concise messages (e.g., "Add user authentication endpoint" or "Fix bug in payment form validation").
 
+- `BD-1: change add friend button color`
+
 ## Coding Standards
 
 ### Style Guide:
@@ -27,7 +29,7 @@ Implement consistent error handling (e.g., try-catch blocks, user-friendly messa
 ## Testing
 
 ### Unit Tests:
-Write tests for critical functions. Aim for ~80% coverage of core logic.
+Write tests for all functions. Aim for ~80% coverage of core logic.
 
 ### Integration Tests:
 Test API endpoints and key workflows using postman
