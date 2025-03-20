@@ -1,0 +1,85 @@
+.content-gap {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  width: 90%;
+  padding: 0.625rem;
+}
+
+.content-gap:hover {
+  background-color: lightgrey;
+  border-radius: 0.625rem /* 10px -> .625rem */;
+  transition: ease-in 0.3s;
+}
+
+.mem-icons {
+  font-size: 2.5rem;
+}
+
+.search-text {
+  font-size: 1.5rem;
+}
+
+.logo {
+  cursor: pointer;
+  width: 20%;
+  text-align: center;
+  font-family: cursive;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2rem;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3.75rem;
+}
+
+.log-out {
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding-left: 1.25rem;
+}
+
+/* Mobile screens */
+@media (max-width: 760px){
+  .sidebar-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    gap: .625rem;
+    padding-right: 1rem;
+  }
+
+  .logo{
+    font-size: 1.25rem;
+    line-height: 1rem;
+    width: 10%;
+  }
+
+  .content-gap{
+    padding: 0;
+    gap: .625rem;
+  }
+
+  .mem-icons {
+    font-size: 1.25rem;
+  }
+  
+  .search-text {
+    display: none;
+  }
+
+  #home{
+    display: none;
+  }
+  
+  .log-out{
+    display: none;
+  }
+}
