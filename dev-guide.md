@@ -5,7 +5,7 @@ Follow Gitflow-inspired approach:
 
 1. main: Stable, deployable code.
 2. develop: Integration branch for features in progress.
-3. [name]: Short-lived branches for specific tasks.
+3. feature/[name]: Short-lived branches for specific tasks.
 
 ### Code Reviews: 
 At least one team member MUST review pull requests (PRs) before merging. Focus on functionality, readability, and adherence to standards.
