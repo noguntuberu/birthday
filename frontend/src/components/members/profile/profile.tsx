@@ -1,5 +1,11 @@
 import "./profile.css";
+import ProfilePage from "../../../pages/profile";
 
 export default function Profile() {
-  return <h1>My Profile</h1>;
+  return (
+    <div>
+      <h1>My Profile</h1>
+      <ProfilePage/>
+    </div>
+  );
 }
