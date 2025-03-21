@@ -2,7 +2,7 @@ import { render, screen, cleanup } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import userEvent from "@testing-library/user-event";
-import RegisterForm from "../src/Register/components/RegisterForm";
+import RegisterForm from "../src/features/Register/components/RegisterForm";
 
 const renderForm = () => {
 	render(<RegisterForm />);

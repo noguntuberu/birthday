@@ -18,7 +18,7 @@ const RegisterForm = () => {
 	const onSubmit = (data: FieldValues, e: any) => {
 		e.preventDefault();
 		apiClient
-			.post("/posts", data)
+			.post("/", data)
 			.then(() => {
 				setError("");
 				reset();
