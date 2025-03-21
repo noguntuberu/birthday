@@ -4,6 +4,7 @@ import Members from "./components/members";
 import Explore from "./components/members/explore";
 import Sidebar from "./components/sidebar";
 import Profile from "./components/members/profile/profile";
+import RegisterForm from "./Register/components/RegisterForm";
 import "./app.css";
 
 function App() {
