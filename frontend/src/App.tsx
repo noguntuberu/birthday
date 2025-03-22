@@ -8,21 +8,21 @@ import RegisterForm from "./features/Register/components/RegisterForm";
 import "./app.css";
 
 function App() {
-	return (
-		<Router>
-			<div className='members-container'>
-				<Sidebar />
-				<div className='members-wrapper'>
-					<Routes>
-						<Route path='/' element={<RegisterForm />} />
-						{/* <Route path="/user-search" element={<Search />} /> */}
-						<Route path='/explore' element={<Explore />} />
-						<Route path='/profile' element={<Profile />} />
-					</Routes>
-				</div>
-			</div>
-		</Router>
-	);
+  return (
+    <Router>
+      <div className="members-container">
+        <Sidebar />
+        <div className="members-wrapper">
+          <Routes>
+            <Route path="/" element={<RegisterForm />} />
+            {/* <Route path="/user-search" element={<Search />} /> */}
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

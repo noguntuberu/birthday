@@ -1,95 +1,95 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 body {
-    background: #f7f7f7;
-    font-family: 'Roboto', sans-serif; 
+  background: #f7f7f7;
+  font-family: "Roboto", sans-serif;
 }
 
 form {
-    max-width: 650px;
-    min-width: 300px; 
-    width: 100%;
-    margin: 0 auto; 
-    padding: 20px;
-    border: 1px solid #ccc; 
-    background: #24323d;
-    border-radius: 8px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-group {
-    margin-bottom: 15px; 
-  }
-  
-  .title {
-    font-size: 28px;
-    color: #1ab188;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    text-align: center;
-    margin: 15px;
-  }
+  max-width: 650px;
+  min-width: 300px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background: #24323d;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .message, 
-  .signin {
-    color: #fff;
-    font-size: 14px;
-    text-align: center;
-  }
+.form-group {
+  margin-bottom: 15px;
+}
 
-  .signin a {
-    color: #1ab188;
-    text-decoration: none;
-    transition: 0.3s;
-  }
+.title {
+  font-size: 28px;
+  color: #1ab188;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-align: center;
+  margin: 15px;
+}
 
-  .signin a:hover {
-    color: #1ec79a;
-  }
-  
-  .label {
-    display: block; 
-    margin-bottom: 5px; 
-    font-weight: bold; 
-    color: #f7f7f7; 
-    text-align: left;
-  }
-  
-  .form-input {
-    width: 100%; 
-    padding: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-    font-size: 16px; 
-    box-sizing: border-box; 
-  }
-  
-  .form-input:focus {
-    border-color: #1ab188; 
-    outline: none;
-    box-shadow: 0 0 5px rgba(17, 71, 41, 0.5); 
-  }
-  
-  button {
-    width: 100%; 
-    padding: 10px; 
-    background-color: #1ab188; 
-    color: #fff; 
-    border: none; 
-    border-radius: 10px; 
-    font-size: 16px; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease;
-  }
+.message,
+.signin {
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.signin a {
+  color: #1ab188;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.signin a:hover {
+  color: #1ec79a;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #f7f7f7;
+  text-align: left;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  border-color: #1ab188;
+  outline: none;
+  box-shadow: 0 0 5px rgba(17, 71, 41, 0.5);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #1ab188;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
 button:focus,
 button:active {
   outline: none;
-} 
- 
-  button:hover {
-    background-color: #1ec79a; 
-  }
+}
+
+button:hover {
+  background-color: #1ec79a;
+}
 
 .err {
   color: #e04b4b;
