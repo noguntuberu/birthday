@@ -6,12 +6,9 @@ import User from "../../Model/userModel";
 jest.mock("../../Model/Tools/addUser");
 
 const validData: any = {
-  firstName: "John",
-  lastName: "Doe",
   username: "johndoe",
   email: "johndoe@example.com",
   password: "password123",
-  gender: "male",
 };
 describe("User Registration", () => {
   beforeEach(async () => {
@@ -21,7 +18,6 @@ describe("User Registration", () => {
   afterEach(async() => {
     jest.resetAllMocks();
     jest.clearAllMocks();
-    
   });
 
   afterAll(() => {
@@ -61,7 +57,7 @@ describe("User Registration", () => {
     expect(res.status).toBe(400);
     expect(res.text).toMatch(/unable/i)
   })
-  it('should return a', async ()=>{
+  it('should return an error if server fails', async ()=>{
     User.findOne = jest.fn().mockRejectedValue(new Error("unexpected error"));
     
     const res =await request(app).post('/register').send(validData);

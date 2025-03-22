@@ -1,12 +1,13 @@
 import express from "express";
 import User from "../Model/userModel";
 import addUser from "../Model/Tools/addUser";
+import bcrypt from "bcrypt";
 
 export const register = express.Router();
 
 register.post("/", async (req, res) => {
   try {
-    const { firstName, lastName, username, dob, email, password, gender } = req.body;
+    const {  username, email, password } = req.body;
     const existingUsername = await User.findOne({ username:username });    
     const existingEmail = await User.findOne({ email: email });
     if (existingUsername) {
@@ -17,14 +18,12 @@ register.post("/", async (req, res) => {
       res.status(400).send("Email already exists");
       return;
     }
+    const salt: any = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
     const user = new User({
-      firstName,
-      lastName,
-      username,
-      dob,
-      email,
-      password,
-      gender: gender.toLowerCase(),
+      username: username,
+      email: email,
+      password: hashedPassword,
     });
 
     const result = await addUser(user);
