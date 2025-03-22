@@ -28,13 +28,13 @@ interface IUser extends Document {
 }
 
 const userSchema = new Schema<IUser>({
-  firstName: { type: String, required: true, trim: true },
-  lastName: { type: String, required: true, trim: true },
+  firstName: { type: String, trim: true },
+  lastName: { type: String, trim: true },
   username: { type: String, required: true, unique: true, trim: true, lowercase: true },
   phone: { type: String, minlength: 9 },
   email: { type: String, required: true, unique: true, trim: true, lowercase: true },
   password: { type: String, required: true, minlength: 6 },
-  dob: { type: Date, required: true },
+  dob: { type: Date },
   gender: { type: String, trim: true, enum: ["male", "female"] },
   friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   friendRequests: [

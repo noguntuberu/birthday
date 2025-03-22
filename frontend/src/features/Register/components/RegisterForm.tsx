@@ -1,9 +1,10 @@
 import "../form.css";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import apiClient from "../services/api-client";
+// import apiClient from "../services/api-client";
 import { BaseSyntheticEvent, useState } from "react";
 import schema, { RegisterFormData } from "../helpers/validation";
+import axios from "axios";
 
 const RegisterForm = () => {
   const [error, setError] = useState("");
@@ -17,8 +18,8 @@ const RegisterForm = () => {
 
   const onSubmit = (data: FieldValues, e?: BaseSyntheticEvent) => {
     e?.preventDefault();
-    apiClient
-      .post("/", data)
+    axios
+      .post("http://localhost:3000/register", data)
       .then(() => {
         setError("");
         reset();

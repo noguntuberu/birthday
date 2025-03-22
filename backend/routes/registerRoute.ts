@@ -1,6 +1,7 @@
 import express from "express";
 import User from "../Model/userModel";
 import addUser from "../Model/Tools/addUser";
+import bcrypt from "bcrypt";
 
 export const register = express.Router();
 
@@ -17,10 +18,12 @@ register.post("/", async (req, res) => {
       res.status(400).send("Email already exists");
       return;
     }
+    const salt: any = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
     const user = new User({
-      username,
-      email,
-      password,
+      username: username,
+      email: email,
+      password: hashedPassword,
     });
 
     const result = await addUser(user);
