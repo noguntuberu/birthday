@@ -52,27 +52,27 @@ p {
 }
 
 /* Mobile screens */
-@media (max-width: 760px){
-  .members-container{
+@media (max-width: 760px) {
+  .members-container {
     display: flex;
     flex-direction: column;
   }
-  
-  .members-wrapper{
+
+  .members-wrapper {
     text-align: center;
-    font-size: .875rem;
+    font-size: 0.875rem;
   }
 
-  .sidebar-wrapper{
+  .sidebar-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding:  .625rem;
+    padding: 0.625rem;
     background-color: grey;
   }
 
-  .members{
+  .members {
     flex: none;
   }
 }

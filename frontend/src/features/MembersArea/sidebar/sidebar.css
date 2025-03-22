@@ -46,40 +46,40 @@
 }
 
 /* Mobile screens */
-@media (max-width: 760px){
-  .sidebar-content{
+@media (max-width: 760px) {
+  .sidebar-content {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 0;
-    gap: .625rem;
+    gap: 0.625rem;
     padding-right: 1rem;
   }
 
-  .logo{
+  .logo {
     font-size: 1.25rem;
     line-height: 1rem;
     width: 10%;
   }
 
-  .content-gap{
+  .content-gap {
     padding: 0;
-    gap: .625rem;
+    gap: 0.625rem;
   }
 
   .mem-icons {
     font-size: 1.25rem;
   }
-  
+
   .search-text {
     display: none;
   }
 
-  #home{
+  #home {
     display: none;
   }
-  
-  .log-out{
+
+  .log-out {
     display: none;
   }
 }
