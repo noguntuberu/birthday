@@ -1,0 +1,117 @@
+.scroll-container {
+  width: 95%;
+  overflow-x: auto;
+  white-space: nowrap; 
+  scroll-behavior: smooth;
+  background-color: grey;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.scroll-container::-webkit-scrollbar {
+  height: 8px; 
+}
+.before-Scroll{
+  p{
+    color:aqua;
+  }
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: rgb(205, 202, 202);
+  border-radius: 5px;
+}
+
+.scroll-item {
+  display: inline-block;
+  width: 200px;
+  height: 150px;
+  background: lightblue;
+  margin-right: 10px;
+  text-align: center;
+  /* line-height: 150px; */
+  font-size: 18px;
+  border-radius: 10px;
+
+  .item-container {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    
+    .username{
+      font-size: 20px;
+      /* margin: 0px; */
+    }
+  
+    .names{
+      display: block;
+    }
+  }
+}
+
+.profile-container {
+  width: 95%;
+  background-color: grey;
+  border-radius: 15px;
+  margin: auto;
+  
+  .initials-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+    .initials {
+      background-color: black;
+      margin: 15px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 600;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    h2 {
+      font-size: 38px;
+      font-family: cursive;
+    }
+  }
+
+  .occupation {
+    padding-bottom: 20px;
+    .occupation-label{
+      color: rgb(194, 236, 236);
+    }
+    .bio {
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+
+  .info {
+
+    .titles {
+      padding-bottom: 20px;
+      font-size: 17px;
+      span{
+        display: block;
+        color: rgb(194, 236, 236);
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+.edit-btn {
+  color: aqua;
+  background-color: rgb(47, 43, 43);
+
+}
