@@ -4,7 +4,8 @@ import { Friends } from "../../../../components/friend";
 import { FriendRequests } from "../../../../components/friendRequest";
 import { useEffect, useState } from "react";
 import { getUser } from "../../../../services/post";
-import { displayName } from "../../../../utils/helperfunctions";
+import { displayName, getInitials } from "../../../../utils/helperfunctions";
+import { ToastContainer } from "react-toastify";
 
 const ProfilePage = () => {
   const [user, setUser] = useState<any | null>(null);
@@ -28,6 +29,8 @@ const ProfilePage = () => {
 
   return (
     <div>
+      <div className="large-screen">
+        <h1 className="large-display"> This App is currently not Available to Large screen users</h1>
       <div className="profile-container">
         {loading ? (
           <p>Loading...</p>
@@ -36,8 +39,8 @@ const ProfilePage = () => {
         ) : (
           <>
             <div className="initials-container">
-              <div className="initials">JD</div>
-              <h2 className="username">{user? displayName(user):""}</h2>
+              <div className="initials">{getInitials(user)}</div>
+              <h2 className="username">{user ? displayName(user) : ""}</h2>
             </div>
 
             <div className="occupation">
@@ -55,27 +58,28 @@ const ProfilePage = () => {
               <div className="before-Scroll">
                 <p>Friend Requests</p>
                 <div className="scroll-container">
-                  <FriendRequests/>
+                  <FriendRequests />
                 </div>
               </div>
               <p className="email titles">
                 <span>Email:</span> {user?.email ? user.email : ""}
               </p>
               <p className="dob titles">
-                <span>Date of Birth:</span> {user?.birthDate ? user.birthDate : ""}
+                <span>Date of Birth:</span>{" "}
+                {user?.birthDate ? user.birthDate : ""}
               </p>
             </div>
 
             <div className="stats">
               <div className="nom-of-friends">
                 <p>Friends</p>
-                <span>10.5K</span>
+                <span>{user.friends?.length|| 0}</span>
               </div>
             </div>
             <div className="before-Scroll">
               <p>Friends</p>
               <div className="scroll-container">
-                <Friends/>
+                <Friends />
               </div>
             </div>
             <Link to="/" className="link">
@@ -84,6 +88,18 @@ const ProfilePage = () => {
           </>
         )}
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </div>
     </div>
   );
 };

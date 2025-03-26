@@ -1,6 +1,7 @@
 import "../features/MembersArea/members/profile/profile.css";
 import { useEffect, useState } from "react";
-import { getFriends } from "../services/post";
+import { getFriends, removeFriend } from "../services/post";
+import { toast } from "react-toastify";
 
 const Friend = ({ id, username, firstName, lastName, onRemove }: any) => {
   return (
@@ -12,8 +13,8 @@ const Friend = ({ id, username, firstName, lastName, onRemove }: any) => {
           <span>{lastName}</span>
         </div>
         <div>
-          <button onClick={() => onRemove(id)}>Remove</button>
-          <button>View</button>
+          <button className="red-btn" onClick={() => onRemove(id)}>Remove</button>
+          <button className="green-btn">View</button>
         </div>
       </div>
     </div>
@@ -21,31 +22,41 @@ const Friend = ({ id, username, firstName, lastName, onRemove }: any) => {
 };
 
 export const Friends = () => {
-  const [friends, setFriends] = useState<any[]| null >([]);
-  const [error, setError] = useState<string | null>("");
+  const [friends, setFriends] = useState<any[] >([]);
+  const [error, setError] = useState<any | null>({
+    fetchFriends: "",
+    removeFriend: "",
+  });
 
   useEffect(()=>{
-        async function fetchUser() {
+        async function fetchFriends() {
           try {
             const friendsData = await getFriends();
             setFriends(friendsData);
           } catch (err) {
-            setError("Error fetching user data.");
+            setError({...error, fetchFriends: "Error fetching friends"});
+            toast.error(error.message);
           }
         }
     
-        fetchUser();
+        fetchFriends();
   },[]);
 
-  const removeFriend = (id: number) => {
-    setFriends((prevFriends) => prevFriends.filter((friend) => friend.id !== friendId));
+  const handleRemoveFriend = async (id: any) => {
+    try{
+      await removeFriend(id);
+      setFriends((prev:any)=>(prev.filter((friend:any) => friend?.id !== id)));
+    }catch(err: any){
+      setError({...error, removeFriend: "Error removing friend"});
+      toast.error(err.message);
+    }
   };
 
   return (
     <div className="scroll-container">
-      {friends.map((friend) => (
-        <Friend key={friend.id} {...friend} onRemove={removeFriend} />
-      ))}
+      {error.fetchFriends ? <p className="err">{error.fetchFriends}</p>: friends.length!==0 ? (friends?.map((friend) => (
+        <Friend key={friend.id} {...friend} onRemove={()=>handleRemoveFriend(friend.id)} />
+      ))): <h2>You don't have any friends</h2>}
     </div>
   );
 };

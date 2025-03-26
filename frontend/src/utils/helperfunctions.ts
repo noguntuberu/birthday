@@ -13,3 +13,13 @@ export const displayName = (user:any)=>{
 
   return pascalCase(user.firstName) +" "+pascalCase(user.lastName);
 }
+
+export const getInitials = (user:any)=>{
+  if(!user.firstName && ! user.lastName){
+    return user.username.slice(0,2).toUpperCase();
+  }
+  if(!user.firstName && user.lastName) return user.lastName.slice(0,2).toUpperCase()
+  if(!user.lastName && user.firstName) return user.firstName.slice(0,2).toUpperCase()
+
+  return user.firstName.slice(0,1).toUpperCase()+user.lastName.slice(0,1).toUpperCase();
+}

@@ -102,7 +102,7 @@ export const controlRejectFriendRequest = async (req: Request, res: Response): P
 export const controlRemoveFriend = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = (req as any).user.userId;
-    const {friendId} = req.body;
+    const friendId = req.params.friendId;
     const result = await removeFriend(userId, friendId);
     if(!result.success){
       res.status(400).send(result.error);
