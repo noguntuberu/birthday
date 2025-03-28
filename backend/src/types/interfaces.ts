@@ -1,4 +1,4 @@
-import mongoose, { Document} from "mongoose";
+import mongoose, { Document } from "mongoose";
 
 export interface IResult {
   success: boolean;
@@ -15,9 +15,7 @@ export interface DBUser extends Document {
   dob: Date;
   gender: "male" | "female";
   friends: mongoose.Types.ObjectId[];
-  friendRequests: {
-    userId: mongoose.Types.ObjectId;
-  }[];
+  friendRequests: mongoose.Types.ObjectId[];
   notifications: {
     message: string;
     isRead: boolean;
