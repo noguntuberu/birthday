@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import router from "./routes/auth";
 import users from "./routes/users";
+import profile from './routes/profile';
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -11,6 +12,7 @@ app.use(
 );
 app.use("/api", router);
 app.use("/api/users", users);
+app.use('/api/profile', profile);
 
 app.get("/", (_req, res) => {
 	res.send("<h1>Server is running...</h1>");
