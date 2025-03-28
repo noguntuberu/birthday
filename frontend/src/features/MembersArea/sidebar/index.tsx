@@ -1,4 +1,4 @@
-import { CiSearch } from "react-icons/ci";
+import { CiSearch, CiSettings } from "react-icons/ci";
 import { IoIosNotificationsOutline, IoMdMenu } from "react-icons/io";
 import { MdOutlineExplore } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
@@ -47,6 +47,12 @@ export default function Sidebar() {
           <div className="content-gap" onClick={closeMenu}>
             <CiSearch className="mem-icons" />
             <p className="search-text">Search</p>
+          </div>
+          </Link>
+          <Link to='/edit-profile' className="link">
+          <div className="content-gap" onClick={closeMenu}>
+            <CiSettings className="mem-icons" />
+            <p className="search-text">Settings</p>
           </div>
           </Link>
           <div className="content-gap" onClick={closeMenu}>
