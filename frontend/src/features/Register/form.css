@@ -92,6 +92,10 @@ button:hover {
   background-color: #1ec79a;
 }
 
+.signup-link {
+  cursor: pointer;
+}
+
 .err {
   color: #e04b4b;
   text-align: left;

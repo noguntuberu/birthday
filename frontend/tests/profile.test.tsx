@@ -1,10 +1,9 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import UserProfile from '../src/features/MembersArea/members/profile/profile';
+import UserProfile from "../src/features/MembersArea/members/profile/profile";
 import React from "react";
 import "@testing-library/jest-dom/vitest";
 import "whatwg-fetch";
-
 
 describe("UserProfile Component", () => {
   it("renders Friend Requests section", async () => {
@@ -21,9 +20,7 @@ describe("UserProfile Component", () => {
 
   it("fetches and displays friend requests", async () => {
     global.fetch = vi.fn().mockResolvedValueOnce({
-      json: async () => [
-        { id: "1", name: "John Doe", username: "johndoe" },
-      ],
+      json: async () => [{ id: "1", name: "John Doe", username: "johndoe" }],
     });
 
     render(<UserProfile />);
@@ -32,7 +29,8 @@ describe("UserProfile Component", () => {
   });
 
   it("fetches and displays friends", async () => {
-    global.fetch = vi.fn()
+    global.fetch = vi
+      .fn()
       .mockResolvedValueOnce({
         json: async () => [],
       })
@@ -48,7 +46,8 @@ describe("UserProfile Component", () => {
   });
 
   it("selecting a friend displays their details", async () => {
-    global.fetch = vi.fn()
+    global.fetch = vi
+      .fn()
       .mockResolvedValueOnce({
         json: async () => [],
       })
@@ -67,7 +66,8 @@ describe("UserProfile Component", () => {
   });
 
   it("clicking close button hides selected friend details", async () => {
-    global.fetch = vi.fn()
+    global.fetch = vi
+      .fn()
       .mockResolvedValueOnce({
         json: async () => [],
       })

@@ -1,4 +1,4 @@
-import {addUser} from "../../src/services/userService";
+import {addUser} from "../../src/services/user";
 import {validateUser} from "../../src/utils/sample";
 import { IUser } from "../../src/types/interfaces";
 import User from "../../src/models/user";

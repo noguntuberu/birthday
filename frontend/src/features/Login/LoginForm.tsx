@@ -56,8 +56,7 @@ const LoginForm = () => {
           {errors.password && <p className="err">{errors.password.message}</p>}
         </div>
         <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 
-            "Logging in..." : "Login"}
+          {isSubmitting ? "Logging in..." : "Login"}
         </button>
         <p className="signin">
           Don't have an account?

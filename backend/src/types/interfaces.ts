@@ -17,9 +17,12 @@ export interface DBUser extends Document {
   friends: mongoose.Types.ObjectId[];
   friendRequests: mongoose.Types.ObjectId[];
   notifications: {
+    id: number;
     message: string;
+    type: "birthday"|"AcceptedRequest"|"ReceivedRequest";
     isRead: boolean;
     createdAt: Date;
+    relatedUser:string;
   }[];
   lastLogin?: Date;
   createdAt: Date;

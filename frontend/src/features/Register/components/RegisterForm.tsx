@@ -1,7 +1,7 @@
 import "../form.css";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { BaseSyntheticEvent, useState } from "react";
+import { BaseSyntheticEvent } from "react";
 import schema, { RegisterFormData } from "../helpers/validation";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
-  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const {
@@ -24,13 +23,11 @@ const RegisterForm = () => {
     axios
       .post("http://localhost:3000/api/register", data)
       .then(() => {
-        setError("");
         reset();
         toast.success("Signup Successful!");
       })
       .catch((error) => {
-        setError(error.message);
-        toast.error("Signup Failed. Please try again.");
+        toast.error(`Signup Failed. ${error.message}`);
       });
   };
 
@@ -95,9 +92,7 @@ const RegisterForm = () => {
             <p className="err">{errors.passwordConfirm.message}</p>
           )}
         </div>
-        <Link to="/login" className="link">
-          <button type="submit">Submit</button>
-        </Link>
+        <button type="submit">Submit</button>
         <p className="signin">
           Already have an account?{" "}
           <span className="signup-link" onClick={() => navigate("/login")}>

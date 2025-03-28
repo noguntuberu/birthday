@@ -1,5 +1,9 @@
 import User from "../models/user";
+<<<<<<< HEAD
 import { DBUser } from "types/interfaces";
+=======
+import { sendNotification } from "./notification";
+>>>>>>> 71fcd8b59b76f2c622bca3722f77f7219fa925fd
 
 export const sendFriendRequest = async (senderId: any, receiverId: any) => {
   const sender = await User.findById(senderId);
@@ -12,9 +16,11 @@ export const sendFriendRequest = async (senderId: any, receiverId: any) => {
     receiver.friendRequests.includes(senderId) ||
     receiver.friends.includes(senderId)
   ) {
+
     return { success: false, error: "Friend request already sent" };
   }
   receiver.friendRequests.push(senderId);
+  await sendNotification({receiverId, message:`${sender?.username} sent you a friend request`, type:"ReceivedRequest", relatedUser:senderId});
   await receiver.save();
   return { success: true };
 };
@@ -34,6 +40,7 @@ export const acceptFriendRequest = async (userId: any, friendId: any) => {
   user.friends.push(friendId);
   friend.friends.push(userId);
   user.friendRequests = user.friendRequests.filter((_id)=>(_id.toString()!==friendId));
+  await sendNotification({receiverId:friendId, message:`${user?.username} Accepted your friend request`, type:"AcceptedRequest", relatedUser:userId});
   await user.save();
   await friend.save();
   return { success: true };

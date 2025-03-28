@@ -1,9 +1,9 @@
-.input{
-  border: .0625rem solid grey;
+.input {
+  border: 0.0625rem solid grey;
   outline: none;
-  border-radius: .625rem;
+  border-radius: 0.625rem;
   width: 70%;
   height: 2.5rem;
   margin-top: 1.25rem;
-  padding-left: .625rem;
+  padding-left: 0.625rem;
 }

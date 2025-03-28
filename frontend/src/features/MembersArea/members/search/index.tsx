@@ -3,7 +3,7 @@ import { useUserStore } from "./userStore";
 import "./search.css";
 
 export default function Search() {
-  const { users, fetchUsers, } = useUserStore();
+  const { users, fetchUsers } = useUserStore();
   const [query, setQuery] = useState("");
   const [filteredUsers, setFilteredUsers] = useState(users);
 
@@ -17,8 +17,8 @@ export default function Search() {
     } else {
       setFilteredUsers(
         users.filter((user) =>
-          user.username.toLowerCase().includes(query.toLowerCase())
-        )
+          user.username.toLowerCase().includes(query.toLowerCase()),
+        ),
       );
     }
   }, [query, users]);

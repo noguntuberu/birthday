@@ -15,13 +15,9 @@ export const useFriends = () => {
   const [selectedFriend, setSelectedFriend] = useState<Friend | null>(null);
 
   useEffect(() => {
-    fetchFriendRequests()
-      .then(setFriendRequests)
-      .catch(console.error);
+    fetchFriendRequests().then(setFriendRequests).catch(console.error);
 
-    fetchFriends()
-      .then(setFriends)
-      .catch(console.error);
+    fetchFriends().then(setFriends).catch(console.error);
   }, []);
 
   const handleSendRequest = async (friendId: string) => {

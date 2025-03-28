@@ -16,7 +16,7 @@ interface UserState {
 
 export const useUserStore = create<UserState>((set, get) => ({
   users: [],
-  
+
   fetchUsers: async () => {
     try {
       const token = localStorage.getItem("token");
@@ -33,8 +33,8 @@ export const useUserStore = create<UserState>((set, get) => ({
   },
 
   searchUser: (query) => {
-    return get().users.find(user => 
-      user.username.toLowerCase().includes(query.toLowerCase())
+    return get().users.find((user) =>
+      user.username.toLowerCase().includes(query.toLowerCase()),
     );
   },
 }));

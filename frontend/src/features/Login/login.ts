@@ -7,13 +7,13 @@ export interface LoginResponse {
 }
 
 export async function loginUser(
-  identifier: string,
+  email: string,
   password: string,
 ): Promise<{ token: string }> {
   try {
     const response = await axios.post<{ token: string }>(
       "http://localhost:3000/api/login",
-      { identifier, password },
+      { email, password },
     );
     const { token } = response.data;
 
