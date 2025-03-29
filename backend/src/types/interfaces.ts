@@ -8,7 +8,7 @@ export interface IResult {
 
 
 export interface DBUser extends Document {
-  _id: string;
+  _id: mongoose.Types.ObjectId | string;
   firstName: string;
   lastName: string;
   username: string;
@@ -20,9 +20,7 @@ export interface DBUser extends Document {
   hobbies: string;
   location: string;
   friends: mongoose.Types.ObjectId[];
-  friendRequests: {
-    userId: mongoose.Types.ObjectId;
-  }[];
+  friendRequests: mongoose.Types.ObjectId[];
   notifications: {
     id: number;
     message: string;
