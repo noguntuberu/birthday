@@ -13,7 +13,7 @@ app.use("/api/users", users);
 app.use("/api/friends", friends);
 
 app.get("/", (_req, res) => {
-	res.send("<h1>Server is running...</h1>");
+  res.send("<h1>Server is running...</h1>");
 });
 
 export default app;

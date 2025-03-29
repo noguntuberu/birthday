@@ -21,11 +21,11 @@ const LoginForm = () => {
     await loginUser(data.email, data.password);
     toast.success("Login Successful!");
     reset();
-    navigate("/members");
+    navigate("/");
   };
 
   return (
-    <>
+    <div className="form_wrapper" id="login_form">
       <form onSubmit={handleSubmit(onSubmit)} className="form" role="form">
         <p className="title">Login</p>
         <p className="message">Login to access to our app.</p>
@@ -55,7 +55,7 @@ const LoginForm = () => {
           />
           {errors.password && <p className="err">{errors.password.message}</p>}
         </div>
-        <button type="submit" disabled={isSubmitting}>
+        <button type="submit" disabled={isSubmitting} className="form_btn">
           {isSubmitting ? "Logging in..." : "Login"}
         </button>
         <p className="signin">
@@ -77,7 +77,7 @@ const LoginForm = () => {
         draggable
         pauseOnHover
       />
-    </>
+    </div>
   );
 };
 

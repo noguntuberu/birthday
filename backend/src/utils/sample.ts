@@ -1,7 +1,6 @@
 import Joi from "joi";
 import { IUser } from "types/interfaces";
 
-
 export function validateUser(user: IUser) {
   const Schema = Joi.object({
     email: Joi.string().email().required(),
@@ -11,5 +10,3 @@ export function validateUser(user: IUser) {
 
   return Schema.validate(user, { abortEarly: false });
 }
-
-

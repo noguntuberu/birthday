@@ -22,69 +22,20 @@ import { getOtherUserProfile } from "../controllers/users";
 
 const router = Router();
 
-router.post("/register", asyncHandler(registerUser));
-router.post("/login", asyncHandler(loginUser));
-router.post(
-  "/friendRequest/send",
-  authMiddleware,
-  asyncHandler(controlSendFriendRequest)
-);
-router.post(
-  "/friendRequest/accept",
-  authMiddleware,
-  asyncHandler(controlAcceptFriendRequest)
-);
-router.post(
-  "/friendRequest/reject",
-  authMiddleware,
-  asyncHandler(controlRejectFriendRequest)
-);
-router.post(
-  "/friend/remove",
-  authMiddleware,
-  asyncHandler(controlRemoveFriend)
-);
-router.get(
-  "/notifications",
-  authMiddleware,
-  asyncHandler(controlGetAllNotifications)
-);
-router.get(
-  "/notifications/:id",
-  authMiddleware,
-  asyncHandler(controlGetNotificationById)
-);
-router.delete(
-  "/notifications",
-  authMiddleware,
-  asyncHandler(controlDeleteAllNotifications)
-);
-router.delete(
-  "/notifications/:id",
-  authMiddleware,
-  asyncHandler(controlDeleteNotificationById)
-);
-router.patch(
-  "/notifications",
-  authMiddleware,
-  asyncHandler(controlReadAllNotifications)
-);
-router.patch(
-  "/notifications/:id",
-  authMiddleware,
-  asyncHandler(controlReadNotification)
-);
-router.post(
-  "/notifications/:id",
-  authMiddleware,
-  asyncHandler(controlSendNotification)
-);
-router.get("/users/:id", authMiddleware, asyncHandler(getOtherUserProfile));
 router.post('/register', asyncHandler(registerUser));
 router.post('/login', asyncHandler(loginUser));
 router.post("/friendRequest/send", authMiddleware, asyncHandler(controlSendFriendRequest));
 router.post("/friendRequest/accept", authMiddleware, asyncHandler(controlAcceptFriendRequest));
 router.post("/friendRequest/reject", authMiddleware, asyncHandler(controlRejectFriendRequest));
+router.delete("/friend/:id", authMiddleware, asyncHandler(controlRemoveFriend));
+router.get("/notifications", authMiddleware, asyncHandler(controlGetAllNotifications));
+router.get("/notifications/:id", authMiddleware, asyncHandler(controlGetNotificationById));
+router.delete("/notifications", authMiddleware, asyncHandler(controlDeleteAllNotifications));
+router.delete("/notifications/:id", authMiddleware, asyncHandler(controlDeleteNotificationById));
+router.patch("/notifications", authMiddleware, asyncHandler(controlReadAllNotifications));
+router.patch("/notifications/:id", authMiddleware, asyncHandler(controlReadNotification));
+router.post("/notifications/:id", authMiddleware, asyncHandler(controlSendNotification));
+router.get("/otherUsers/:id", authMiddleware, asyncHandler(getOtherUserProfile));
 router.get('/friendRequest/view', authMiddleware, asyncHandler(controlViewFriendRequests));
 router.post("/friendRequest/remove", authMiddleware, asyncHandler(controlRemoveFriend));
 

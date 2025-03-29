@@ -1,20 +1,40 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-body {
-  background: #f7f7f7;
+.form_wrapper {
+  background-color: #ffffff;
   font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 0;
+}
+
+#login_form {
+  padding-top: 4rem;
 }
 
 form {
-  max-width: 650px;
-  min-width: 300px;
-  width: 100%;
-  margin: 0 auto;
+  width: 60%;
   padding: 20px;
   border: 1px solid #ccc;
   background: #24323d;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form_btn {
+  width: 10rem;
+  height: 2rem;
+  margin: auto;
+  margin-top: 1.25rem;
+  background-color: #1ab188;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_btn:hover {
+  background-color: #1fa984;
 }
 
 .form-group {
@@ -27,7 +47,14 @@ form {
   font-weight: 600;
   letter-spacing: 0.3px;
   text-align: center;
-  margin: 15px;
+  margin: 0.625rem;
+}
+
+.signin {
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  padding-top: 1.25rem;
 }
 
 .message,
@@ -35,6 +62,7 @@ form {
   color: #fff;
   font-size: 14px;
   text-align: center;
+  padding-bottom: 1rem;
 }
 
 .signin a,
@@ -72,14 +100,8 @@ form {
 }
 
 button {
-  width: 100%;
-  padding: 10px;
   background-color: #1ab188;
   color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
@@ -120,7 +142,7 @@ button:hover {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .large-screen {
     display: none;
   }

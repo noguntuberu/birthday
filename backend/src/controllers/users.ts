@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import UserService from "../services/getUsers";
+import { updateUser } from "../services/user";
 
 export const getAllUsers = async (_: Request, res: Response) => {
   const users = await UserService.findAllUsers();
@@ -9,8 +10,8 @@ export const getAllUsers = async (_: Request, res: Response) => {
 
 export const getUserById = async (req: Request, res: Response) => {
   try {
-    const userId = (req as any).user.userId;
-    const user = await UserService.findUsersById(userId);
+    const myId = (req as any).user.userId;
+    const user = await UserService.findUsersById(myId);
     if (!user) {
       res.status(404).send("User not found");
       return;
@@ -46,6 +47,21 @@ export const getOtherUserProfile = async (
     }
 
     res.status(200).json(user);
+  } catch (err: any) {
+    res.status(500).send(`Server error: ${err.message}`);
+  }
+};
+
+export const controlUpdateUser = async (req: Request, res: Response) => {
+  try {
+    const myId = (req as any).user.userId;
+    const data = req.body;
+    const result = await updateUser(data,myId);
+    if(!result.success){
+      res.status(400).send(result.error);
+      return;
+    }
+    res.status(200).send("Updated successfully");    
   } catch (err: any) {
     res.status(500).send(`Server error: ${err.message}`);
   }

@@ -1,0 +1,42 @@
+.notifications-container {
+  padding: 16px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.notifications-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.mark-read,
+.delete-all {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.delete-all {
+  color: red;
+}
+
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loading-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+
+.no-notifications {
+  text-align: center;
+  color: gray;
+}

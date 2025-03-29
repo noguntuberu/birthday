@@ -4,16 +4,25 @@ import UserProfile from "../src/features/MembersArea/members/profile/profile";
 import React from "react";
 import "@testing-library/jest-dom/vitest";
 import "whatwg-fetch";
+import { MemoryRouter } from "react-router-dom";
 
 describe("UserProfile Component", () => {
   it("renders Friend Requests section", async () => {
-    render(<UserProfile />);
+    render(
+      <MemoryRouter>
+        <UserProfile />
+      </MemoryRouter>,
+    );
 
     expect(screen.getByText(/friend requests/i)).toBeInTheDocument();
   });
 
   it("renders Connected Friends section", async () => {
-    render(<UserProfile />);
+    render(
+      <MemoryRouter>
+        <UserProfile />
+      </MemoryRouter>,
+    );
 
     expect(screen.getByText(/connected friends/i)).toBeInTheDocument();
   });
@@ -23,7 +32,11 @@ describe("UserProfile Component", () => {
       json: async () => [{ id: "1", name: "John Doe", username: "johndoe" }],
     });
 
-    render(<UserProfile />);
+    render(
+      <MemoryRouter>
+        <UserProfile />
+      </MemoryRouter>,
+    );
 
     expect(await screen.findByText(/John Doe/i)).toBeInTheDocument();
   });
@@ -40,7 +53,11 @@ describe("UserProfile Component", () => {
         ],
       });
 
-    render(<UserProfile />);
+    render(
+      <MemoryRouter>
+        <UserProfile />
+      </MemoryRouter>,
+    );
 
     expect(await screen.findByText(/Jane Smith/i)).toBeInTheDocument();
   });
@@ -57,7 +74,11 @@ describe("UserProfile Component", () => {
         ],
       });
 
-    render(<UserProfile />);
+    render(
+      <MemoryRouter>
+        <UserProfile />
+      </MemoryRouter>,
+    );
 
     const friendItem = await screen.findByText(/Alice Brown/i);
     fireEvent.click(friendItem);
@@ -77,7 +98,11 @@ describe("UserProfile Component", () => {
         ],
       });
 
-    render(<UserProfile />);
+    render(
+      <MemoryRouter>
+        <UserProfile />
+      </MemoryRouter>,
+    );
 
     const friendItem = await screen.findByText(/Bob Martin/i);
     fireEvent.click(friendItem);

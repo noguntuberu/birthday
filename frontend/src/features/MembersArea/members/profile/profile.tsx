@@ -1,69 +1,95 @@
-import { useFriends } from "../../../../hooks/useFriends";
-import FriendList from "../../../../features/FriendList";
-import FriendRequests from "../../../../features/FriendRequests";
 import "./profile.css";
+import { Link } from "react-router-dom";
+import { Friends } from "../../../../components/friend";
+import { FriendRequests } from "../../../../components/friendRequest";
+// import { useEffect, useState } from "react";
+// import { getUser } from "../../../../services/userService";
+import { displayName, getInitials } from "../../../../utils/helperfunctions";
+import { ToastContainer } from "react-toastify";
+import { useUser } from "../../../../hooks/useUser";
 
-const UserProfile = () => {
-  const {
-    friendRequests,
-    friends,
-    selectedFriend,
-    setSelectedFriend,
-    handleSendRequest,
-    handleAcceptRequest,
-    handleRejectRequest,
-    handleRemoveFriend,
-  } = useFriends();
+const ProfilePage = () => {
+  const { user, error, loading } = useUser();
 
   return (
-    <div className="profile-container p-4">
-      <h2 className="text-xl font-bold">Friend Requests</h2>
-      <FriendRequests
-        requests={friendRequests}
-        onAccept={handleAcceptRequest}
-        onReject={handleRejectRequest}
-      />
+    <div>
+      <div className="large-fields">
+        <h1 className="large-body">
+          {" "}
+          This App is currently not Available to Large screen users
+        </h1>
+        <div className="profile-container">
+          {loading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <p style={{ color: `red` }}>{error}</p>
+          ) : (
+            <>
+              <div className="initials-container">
+                <div className="initials">{getInitials(user)}</div>
+                <h2 className="username">{user ? displayName(user) : "N/A"}</h2>
+              </div>
 
-      <h2 className="text-xl font-bold mt-4">Connected Friends</h2>
-      <FriendList
-        friends={friends}
-        onRemove={handleRemoveFriend}
-        onSelect={setSelectedFriend}
-      />
+              <div className="occupation">
+                <p className="occupation-label">Username</p>
+                <p className="bio">{user?.username}</p>
+              </div>
 
-      {selectedFriend && (
-        <div className="mt-4 p-4 border rounded">
-          <img
-            src="https://via.placeholder.com/120"
-            alt="User Profile"
-            className="profile-img"
-          />
-          <h2 className="text-lg font-bold">{selectedFriend.name}</h2>
-          <p>Username: {selectedFriend.username}</p>
-          <p>Email: {selectedFriend.email || "N/A"}</p>
-          <p>Date of Birth: {selectedFriend.dob || "N/A"}</p>
-          <p>Location: {selectedFriend.location || "N/A"}</p>
-          <p>Hobbies: {selectedFriend.hobbies || "N/A"}</p>
-          <button
-            className="mt-2 bg-red-500 text-white px-4 py-2"
-            onClick={() => setSelectedFriend(null)}
-          >
-            Close
-          </button>
+              <div className="info">
+                <p className="hobbies titles">
+                  <span>Hobbies:</span> {user?.hobbies ? user.hobbies : "N/A"}
+                </p>
+                <p className="Location titles">
+                  <span>Location:</span>{" "}
+                  {user?.location ? user.location : "N/A"}
+                </p>
+                <div className="before-Scroll">
+                  <p>Friend Requests</p>
+                  <div className="scroll-container">
+                    <FriendRequests />
+                  </div>
+                </div>
+                <p className="email titles">
+                  <span>Email:</span> {user?.email ? user.email : ""}
+                </p>
+                <p className="dob titles">
+                  <span>Date of Birth:</span>
+                  {user?.birthDate ? user.birthDate : "N/A"}
+                </p>
+              </div>
+
+              <div className="stats">
+                <div className="nom-of-friends">
+                  <p>Friends</p>
+                  <span>{user.friends?.length || 0}</span>
+                </div>
+              </div>
+              <div className="before-Scroll">
+                <p>Friends</p>
+                <div className="scroll-container">
+                  <Friends />
+                </div>
+              </div>
+              <Link to="/editProfile" className="link">
+                <button className="edit-btn">Edit Profile</button>
+              </Link>
+            </>
+          )}
         </div>
-      )}
-
-      <div className="mt-4">
-        <h2 className="text-xl font-bold">Send Friend Request</h2>
-        <button
-          className="bg-green-500 text-white px-3 py-1 rounded"
-          onClick={() => handleSendRequest("friend_id_here")}
-        >
-          Send Request
-        </button>
+        <ToastContainer
+          position="top-right"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </div>
     </div>
   );
 };
 
-export default UserProfile;
+export default ProfilePage;

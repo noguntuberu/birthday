@@ -9,7 +9,7 @@
 }
 
 /* Mobile screens */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   nav {
     position: relative;
     background-color: grey;

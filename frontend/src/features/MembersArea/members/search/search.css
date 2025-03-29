@@ -1,3 +1,12 @@
+.search_wrapper {
+  background-color: #ffffff;
+}
+
+.list {
+  margin-top: 1.25rem;
+  color: black;
+}
+
 .input {
   border: 0.0625rem solid grey;
   outline: none;
@@ -6,4 +15,24 @@
   height: 2.5rem;
   margin-top: 1.25rem;
   padding-left: 0.625rem;
+}
+
+.user-add-display {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  text-align: left;
+  margin-top: 0.625rem;
+}
+
+.username_email {
+  width: 20%;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+small {
+  display: block;
 }

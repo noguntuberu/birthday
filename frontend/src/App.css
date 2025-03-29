@@ -6,6 +6,7 @@ body {
   box-sizing: border-box;
   font-weight: 500;
   overflow-x: hidden;
+  color: black;
 }
 
 h1,
@@ -24,6 +25,12 @@ p {
   color: initial;
 }
 
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 0.625rem;
+}
+
 @media (min-width: 768px) {
   .large-screens {
     text-align: center;
@@ -36,7 +43,7 @@ p {
 }
 
 /* Mobile screens */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .large-screens {
     display: none;
   }
@@ -50,15 +57,6 @@ p {
     text-align: center;
     font-size: 0.875rem;
   }
-
-  /* .sidebar-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0.625rem;
-    background-color: grey;
-  } */
 
   .members {
     flex: none;

@@ -6,7 +6,7 @@ import schema, { RegisterFormData } from "../helpers/validation";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -25,6 +25,9 @@ const RegisterForm = () => {
       .then(() => {
         reset();
         toast.success("Signup Successful!");
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
       })
       .catch((error) => {
         toast.error(`Signup Failed. ${error.message}`);
@@ -32,11 +35,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <>
-      <div className="large-screen">
-        This app is unavailable for large screens. Please use a mobile device.
-      </div>
-
+    <div className="form_wrapper">
       <form onSubmit={handleSubmit(onSubmit)} className="form" role="form">
         <p className="title">Register</p>
         <p className="message">Signup now and get full access to our app.</p>
@@ -92,7 +91,9 @@ const RegisterForm = () => {
             <p className="err">{errors.passwordConfirm.message}</p>
           )}
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" className="form_btn">
+          Submit
+        </button>
         <p className="signin">
           Already have an account?{" "}
           <span className="signup-link" onClick={() => navigate("/login")}>
@@ -103,7 +104,7 @@ const RegisterForm = () => {
 
       <ToastContainer
         position="top-right"
-        autoClose={4000}
+        autoClose={1700}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -112,7 +113,7 @@ const RegisterForm = () => {
         draggable
         pauseOnHover
       />
-    </>
+    </div>
   );
 };
 

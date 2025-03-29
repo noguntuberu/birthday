@@ -15,11 +15,11 @@ export async function loginUser(
       "http://localhost:3000/api/login",
       { email, password },
     );
-    const { token } = response.data;
+    const { token } = await response.data;
 
     if (!token) throw new Error("Invalid login response.");
 
-    localStorage.setItem("token", token);
+    await localStorage.setItem("token", token);
 
     return { token };
   } catch (error: any) {

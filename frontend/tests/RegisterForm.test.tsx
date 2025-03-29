@@ -11,9 +11,9 @@ import {
 } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import userEvent from "@testing-library/user-event";
+import RegisterForm from "../src/features/Register/components/RegisterForm";
 import { server } from "./mocks/server";
 import { MemoryRouter } from "react-router-dom";
-import RegisterForm from "../src/features/Register/components/RegisterForm";
 
 const renderForm = () => {
   render(
@@ -102,7 +102,6 @@ describe("RegisterForm", () => {
       await waitForFormToLoad();
     const user = userEvent.setup();
     await user.type(username, "user");
-    // await user.type(email, "user@gmail.com");
     await user.type(password, "Password@123");
     await user.type(passwordConfirm, "Password@123");
     await user.click(submitButton);

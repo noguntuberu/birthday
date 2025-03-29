@@ -2,6 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 
 interface User {
+  _id: string;
   username: string;
   email: string;
   friends: string[];
@@ -26,7 +27,16 @@ export const useUserStore = create<UserState>((set, get) => ({
         headers: { Authorization: token },
       });
 
-      set({ users: response.data });
+      console.log("Raw API Response:", response.data);
+
+      const usersWithId = response.data.map((user: User) => ({
+        ...user,
+        id: user._id,
+      }));
+
+      console.log("Mapped Users:", usersWithId);
+
+      set({ users: usersWithId });
     } catch (error) {
       console.error("Error fetching users:", error);
     }

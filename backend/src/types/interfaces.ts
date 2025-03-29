@@ -3,9 +3,12 @@ import mongoose, { Document } from "mongoose";
 export interface IResult {
   success: boolean;
   error?: string;
+  userId?: string; // ✅ Allow userId in the response
 }
 
+
 export interface DBUser extends Document {
+  _id: mongoose.Types.ObjectId | string;
   firstName: string;
   lastName: string;
   username: string;
@@ -14,6 +17,8 @@ export interface DBUser extends Document {
   password: string;
   dob: Date;
   gender: "male" | "female";
+  hobbies: string;
+  location: string;
   friends: mongoose.Types.ObjectId[];
   friendRequests: mongoose.Types.ObjectId[];
   notifications: {
@@ -29,6 +34,7 @@ export interface DBUser extends Document {
 }
 
 export interface IUser {
+  _id: string;
   email: string;
   username: string;
   password: string;
