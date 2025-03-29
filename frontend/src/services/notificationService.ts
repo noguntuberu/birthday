@@ -1,16 +1,15 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-const config = {
-  headers: {
-    Authorization: token ,
-  },
-};
-
 
 const url = "http://localhost:3000/api";
 
 export const getNotifications = async ()=>{
+  const token = localStorage.getItem("token");
+  const config = {
+  headers: {
+    Authorization: token 
+  },
+  }; 
   try {
     const res = await axios.get(`${url}/notifications`,config); 
     return res.data;
@@ -21,6 +20,12 @@ export const getNotifications = async ()=>{
 }
 
 export const deleteAllNotifications = async ()=>{
+  const token = localStorage.getItem("token");
+  const config = {
+  headers: {
+    Authorization: token 
+  },
+  }; 
   try {
     await axios.delete(`${url}/notifications`,config); 
     return true;
@@ -31,6 +36,12 @@ export const deleteAllNotifications = async ()=>{
 }
 
 export const deleteNotification = async (id: number)=>{
+  const token = localStorage.getItem("token");
+  const config = {
+  headers: {
+    Authorization: token 
+  },
+  }; 
   try {
     await axios.delete(`${url}/notifications/${id}`,config); 
     return true;
@@ -41,6 +52,12 @@ export const deleteNotification = async (id: number)=>{
 }
 
 export const readNotification = async (id: number)=>{
+  const token = localStorage.getItem("token");
+  const config = {
+  headers: {
+    Authorization: token 
+  },
+  }; 
   try {
     await axios.patch(`${url}/notifications/${id}`,config); 
     return true;
@@ -51,6 +68,12 @@ export const readNotification = async (id: number)=>{
 }
 
 export const readAllNotifications = async ()=>{
+  const token = localStorage.getItem("token");
+  const config = {
+  headers: {
+    Authorization: token 
+  },
+  }; 
   try {
     await axios.patch(`${url}/notifications/`,config); 
     return true;

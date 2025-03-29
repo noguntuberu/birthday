@@ -4,12 +4,13 @@ const Logout = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
 
-    localStorage.removeItem("token");
+    await localStorage.removeItem("token");
     sessionStorage.removeItem("token");
     
-
+    const newToken = localStorage.getItem("token");
+    console.log(newToken)
     navigate("/login");
   };
 
