@@ -3,6 +3,7 @@ import axios from "axios";
 export const sendFriendRequest = async (receiverId: string): Promise<boolean> => {
     try {
         const token = localStorage.getItem("token");
+        console.log(token);
         if (!token) throw new Error("No token found");
 
         console.log("Raw token from storage:", `"${token}"`);

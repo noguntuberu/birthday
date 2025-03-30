@@ -4,6 +4,7 @@ import { useNotifications } from "../../../../hooks/useNotifications";
 import { ToastContainer } from "react-toastify";
 
 
+
 const Notifications=()=>{
   const {
     notifications,
@@ -13,13 +14,18 @@ const Notifications=()=>{
     handleReadAll,
     handleDeleteNotification,
     handleDeleteAllNotifications,
+    unread,
   } = useNotifications(); 
+  
 
   if (loading) return <p>Loading notifications...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div className="page-container">
+      <div className="head-container">
+        <h3 className="head-text">Notifications <span className={unread===0? "count gree": "count red"}>{unread}</span></h3>
+      </div>
       <div>
         <span onClick={handleReadAll} style={{ cursor: "pointer", marginRight: "10px" }}>
           Mark all Read
@@ -30,8 +36,8 @@ const Notifications=()=>{
       </div>
 
       {/* Render notifications */}
-      <div>
-        {notifications.length === 0 ? (
+      <div className="all-not">
+        {notifications?.length === 0 ? (
           <p>No notifications</p>
         ) : (
           notifications.map((notif) => (
@@ -59,4 +65,4 @@ const Notifications=()=>{
   );
 }
 
-export default Notifications
+export default Notifications;

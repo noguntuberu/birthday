@@ -59,7 +59,7 @@ export const readNotification = async (id: number)=>{
   },
   }; 
   try {
-    await axios.patch(`${url}/notifications/${id}`,config); 
+    await axios.patch(`${url}/notifications/${id}`,{},config); 
     return true;
   } catch (error:any) {
     console.error(error.message);
@@ -75,7 +75,7 @@ export const readAllNotifications = async ()=>{
   },
   }; 
   try {
-    await axios.patch(`${url}/notifications/`,config); 
+    await axios.patch(`${url}/notifications/`,{},config); 
     return true;
   } catch (error:any) {
     console.error(error.message);

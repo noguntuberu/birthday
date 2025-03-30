@@ -6,6 +6,7 @@ import {
   acceptFriendRequest,
   rejectFriendRequest,
   removeFriend,
+  fetchSentRequests,
 } from "../services/friendService";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +22,8 @@ export const useFriends = () => {
     accept: "",
     reject: "",
   });
+  const [sentRequests, setSentRequests] = useState<any[]>([]);
+  const [sentRequestsError, setSentRequestError] = useState("");
   const [friends, setFriends] = useState<any[]>([]);
   const [selectedFriend, setSelectedFriend] = useState<any | null>(null);
   const navigate = useNavigate();
@@ -43,10 +46,20 @@ export const useFriends = () => {
         setRequestError({ ...requestError, fetch: err.message });
       }
     }
+
+    async function getSentRequest() {
+      try {
+        const result = await fetchSentRequests();
+        setSentRequests(result);
+      } catch (err: any) {
+        setSentRequestError(err.message);
+      }
+    }
     
     const fetchData = () => {
       getFriends();
       getRequests();
+      getSentRequest();
     };
     fetchData();
 
@@ -55,11 +68,6 @@ export const useFriends = () => {
 
   }, [navigate]);
 
-  // const handleSendRequest = async (friendId: string) => {
-  //   const response = await sendFriendRequest(friendId);
-  //   if (response.ok===true) console.log("Friend request sent");
-  //   else console.error("Failed to send friend request");
-  // };
   async function handleAccept(id: any) {
     try {
       await acceptFriendRequest(id);
@@ -97,14 +105,31 @@ export const useFriends = () => {
     }
   };
 
+  const handleSentRequest = async (id: string) => {
+    try {
+      await fetchSentRequests();
+      toast.success("Successfully removed friend");
+      setFriends((prev) => prev.filter((friend) => friend._id !== id));
+    } catch (err: any) {
+      setFriendError((prevError) => ({
+        ...prevError,
+        removeFriend: err.message,
+      }));
+      toast.error(err.message);
+    }
+  };
+
   return {
     requests,
     friends,
     selectedFriend,
     friendError,
     requestError,
+    sentRequests,
+    setSentRequests,
+    sentRequestsError,
     setSelectedFriend,
-    // handleSendRequest,
+    handleSentRequest,
     handleAccept,
     handleReject,
     handleRemoveFriend,

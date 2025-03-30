@@ -1,17 +1,20 @@
-import { z } from "zod";
+import * as z from "zod";
 
-const schema = z.object({
-  firstName: z.string().min(3, { message: "at least 3 alphabets" }).optional(),
-  lastName:  z.string().min(3, { message: "at least 3 alphabets" }).optional(),
-  hobbies: z.string().min(3, { message: "at least 3 alphabets" }).optional(),
-  location:  z.string().min(3, { message: "at least 3 alphabets" }).optional(),
-  dob: z
-  .union([z.string(), z.date()]) 
-  .refine((val) => !val || !isNaN(new Date(val).getTime()), "Invalid date format")
+const formSchema = z.object({
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
+  age: z.number().min(18, "Must be at least 18").optional(),
+  dob: z.string().optional(),
+  hobbies: z.string().optional(),
+  location: z.string().optional(),
+  image: z
+  .custom<File | null | undefined>((file) => {
+    if (!file) return true; // Allow empty file (optional)
+    return file instanceof File && file.type.startsWith("image/");
+  }, { message: "Invalid file format. Only images are allowed." })
   .optional(),
-  gender: z.enum(["male", "female"]).optional(),
 });
 
-export type ProfileFormData = z.infer<typeof schema>;
+export type FormData = z.infer<typeof formSchema>;
 
-export default schema;
+export default formSchema;

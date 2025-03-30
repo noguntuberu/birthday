@@ -28,3 +28,17 @@ export const getAllFriendRequests = async (req: Request, res: Response) => {
 		res.status(500).send(`Server error: ${err.message}`);
 	}
 };
+
+export const getAllSentRequests = async (req: Request, res: Response) => {
+	try {
+		const userId = (req as any).user.userId;
+		const sentRequests = await FriendService.findAllSentRequests(userId);
+		if (!sentRequests) {
+			res.status(404).send("friend Requests could not be found");
+			return;
+		}
+		res.send(sentRequests);
+	} catch (err: any) {
+		res.status(500).send(`Server error: ${err.message}`);
+	}
+};

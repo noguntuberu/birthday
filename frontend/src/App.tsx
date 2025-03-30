@@ -9,12 +9,16 @@ import RegisterForm from "./features/Register/components/RegisterForm";
 import LoginForm from "./features/Login/LoginForm";
 import Search from "./features/MembersArea/members/search";
 import Notifications from "./features/MembersArea/members/notifications";
+import AutoLogout from "./components/AutoLogOut";
 import "./app.css";
 import PrivateRoute from "./components/PrivateRoute";
+import FriendList from "./features/MembersArea/members/friends/Friendlist";
+import FriendRequestList from "./features/MembersArea/members/friends/FriendRequestList";
 
 function App() {
   return (
     <Router>
+      <AutoLogout />
       <div className="large-screens">
         This app is unavailable for large screens. Please use a mobile device.
       </div>
@@ -32,6 +36,8 @@ function App() {
               <Route path="/profile/:userId" element={<OtherUserProfile />} />
               <Route path="/editProfile" element={<ProfileForm />} />
               <Route path="/notifications" element={<Notifications />} />
+              <Route path="/friendslist" element={<FriendList />} />
+              <Route path="/friendRequests" element={<FriendRequestList />} />
             </Route>
           </Routes>
         </div>

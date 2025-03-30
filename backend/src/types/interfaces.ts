@@ -15,11 +15,15 @@ export interface DBUser extends Document {
   phone?: string;
   email: string;
   password: string;
+  profilePic:string;
   dob: Date;
   gender: "male" | "female";
   hobbies: string;
   location: string;
   friends: mongoose.Types.ObjectId[];
+  sentRequests: {
+    userId: mongoose.Types.ObjectId;
+  }[];
   friendRequests: {
     userId: mongoose.Types.ObjectId;
   }[];

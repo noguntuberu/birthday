@@ -15,8 +15,10 @@ export const sendFriendRequest = async (senderId: any, receiverId: any) => {
 
     return { success: false, error: "Friend request already sent" };
   }
+  sender.sentRequests.push(receiverId);
   receiver.friendRequests.push(senderId);
   await sendNotification({receiverId, message:`${sender?.username} sent you a friend request`, type:"ReceivedRequest", relatedUser:senderId});
+  await sender.save();
   await receiver.save();
   return { success: true };
 };
@@ -35,6 +37,8 @@ export const acceptFriendRequest = async (userId: any, friendId: any) => {
   }
   user.friends.push(friendId);
   friend.friends.push(userId);
+
+  friend.sentRequests = friend.sentRequests.filter((_id)=>(_id.toString()!==userId));
   user.friendRequests = user.friendRequests.filter((_id)=>(_id.toString()!==friendId));
   await sendNotification({receiverId:friendId, message:`${user?.username} Accepted your friend request`, type:"AcceptedRequest", relatedUser:userId});
   await user.save();
@@ -54,10 +58,12 @@ export const rejectFriendRequest = async (userId: any, friendId: any) => {
   if (!user.friendRequests.includes(friendId)) {
     return { success: false, error: "No friend request found" };
   }
+  friend.sentRequests = friend.sentRequests.filter((_id)=>(_id.toString()!==userId));
   user.friendRequests = user.friendRequests.filter(
     (_id) => _id.toString() !== friendId,
   );
   await user.save();
+  await friend.save();
   return { success: true };
 };
 

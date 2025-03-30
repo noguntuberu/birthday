@@ -1,7 +1,7 @@
 export const pascalCase = (string:string)=>{
-  const fistLetter = string.slice(0,1);
-  const rest = string.slice(1);
-  return fistLetter.toUpperCase()+ rest;
+  const fistLetter = string?.slice(0,1);
+  const rest = string?.slice(1);
+  return fistLetter?.toUpperCase()+ rest;
 }
 
 export const displayName = (user:any)=>{
@@ -16,12 +16,12 @@ export const displayName = (user:any)=>{
 
 export const getInitials = (user:any)=>{
   if(!user.firstName && ! user.lastName){
-    return user.username.slice(0,2).toUpperCase();
+    return user.username?.slice(0,2).toUpperCase();
   }
   if(!user.firstName && user.lastName) return user.lastName.slice(0,2).toUpperCase()
   if(!user.lastName && user.firstName) return user.firstName.slice(0,2).toUpperCase()
 
-  return user.firstName.slice(0,1).toUpperCase()+user.lastName.slice(0,1).toUpperCase();
+  return user?.firstName.slice(0,1).toUpperCase()+user.lastName.slice(0,1).toUpperCase();
 }
 
 export const getNextBirthday = (birthDate: Date | string) => {
@@ -69,3 +69,34 @@ export const getFirst3 = (array: any [])=> {
   const result = array?.slice(0,3);
   return result;
 }
+
+export const calculateAge = (birthdate:any) => {
+  if(!birthdate) return ;
+  if (!(birthdate instanceof Date)) {
+    birthdate = new Date(birthdate);
+  }
+  const today = new Date();
+  let age = today.getFullYear() - birthdate?.getFullYear();
+  const monthDiff = today.getMonth() - birthdate?.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdate?.getDate())) {
+    age--;
+  }
+  return age;
+};
+
+export const dateFormat = (date: Date | string)=> {
+  if(!date){
+    return;
+  }
+  const parsedDate = typeof date === "string" ? new Date(date) : date;
+
+  if (isNaN(parsedDate.getTime())) {
+    throw new Error("Invalid date format");
+  }
+
+  const day = parsedDate.getDate();
+  const month = parsedDate.getMonth() + 1;
+  const year = parsedDate.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
