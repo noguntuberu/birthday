@@ -1,5 +1,5 @@
 import { useFriends } from "../../../../hooks/useFriends";
-const RemoveFriend= (userId:any)=>{
+const RemoveFriend= ({userId}:{ userId: string })=>{
   const {handleRemoveFriend}= useFriends();
   return (
     <div className="btn-case" onClick={()=>handleRemoveFriend(userId)}>

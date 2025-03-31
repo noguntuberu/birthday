@@ -1,6 +1,7 @@
 import axios from "axios";
 
 
+
 const url = "http://localhost:3000/api";
 
 export const fetchFriendRequests = async () => {
@@ -43,7 +44,8 @@ export const sendFriendRequest = async (friendId: string) => {
     Authorization: token 
   },
   }; 
-  await axios.post(`${url}/friendRequest/send`,{friendId: friendId}, config );
+  await axios.post(`${url}/friendRequest/send`,{receiverId: friendId}, config );
+  
   return true;
 };
 

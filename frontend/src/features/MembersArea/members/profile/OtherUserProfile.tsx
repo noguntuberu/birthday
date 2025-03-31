@@ -10,11 +10,10 @@ import {
 import axios from "axios";
 import { useImage } from "../../../../hooks/useImage";
 import AddFriend from "./sendRequest";
-import { useFriends } from "../../../../hooks/useFriends";
+import { ToastContainer } from "react-toastify";
 
 const OtherUserProfile = () => {
   const { userId } = useParams();
-  const { friends } = useFriends();
   const [user, setUser] = useState<any | null>(null);
   const token = localStorage.getItem("token");
   const { othersImage, handleFetchOthersImage } = useImage();
@@ -34,6 +33,7 @@ const OtherUserProfile = () => {
         handleFetchOthersImage(userId);
     }
   }, [userId]);
+  console.log(user)
 
   if (!user) {
     return <p>Loading profile...</p>;
@@ -92,6 +92,11 @@ const OtherUserProfile = () => {
         </div>
       </div>
       <div className="foot"></div>
+      <ToastContainer
+              position="top-right"
+              autoClose={4000}
+              hideProgressBar={false}
+            />
     </section>
   );
 };
