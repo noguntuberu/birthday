@@ -1,0 +1,57 @@
+.main-container {
+  background-color: white;
+  min-height: 100vh;
+  margin-top: 0;
+  
+  .title {
+    margin-top: 0;
+    padding-top: 20px;
+    font-size: 18px;
+    background-color: gray;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    color: white;
+    padding-bottom: 10px;
+  }
+
+  .no-friend{
+    margin: auto;
+    font-size: 14px;
+  }
+
+  .content-case{
+    margin-top: 20px;
+    .user-add-display{
+      border-top: 2px solid grey;
+      width: 85%;
+      margin: auto;
+      /* box-shadow: 10px 10px 400px 0px rgba(0,0,0,0.35); */
+      padding: 10px 0;
+    }
+
+
+    .buttons-case {
+      display: flex;
+
+      .view-btn{
+        height: 30px;
+        width: 70px;
+        border: 1px solid grey;
+        background-color: grey;
+        color: white;
+        font-weight: 550;
+        margin-right: 2px;
+      }
+      .remove-btn{
+        height: 30px;
+        width: 70px;
+        border: 1px solid grey;
+        background-color: white;
+        color: grey;
+        font-weight: 550;
+        margin-right: 2px;
+      }
+    }
+  }
+}

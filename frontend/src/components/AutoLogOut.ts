@@ -8,14 +8,19 @@ const AutoLogout = () => {
     const checkToken = () => {
       const token = localStorage.getItem("token");
 
+      if (location.pathname === "/login" || location.pathname === "/register") {
+        return;
+      }
+
+
       if (!token || isTokenExpired(token)) {
         localStorage.removeItem("token");
-        navigate("/login");
+        navigate("/login", {replace:true});
       }
     };
 
     checkToken();
-    const interval = setInterval(checkToken, 60000); // Check every minute
+    const interval = setInterval(checkToken, 6000);
 
     return () => clearInterval(interval);
   }, [navigate]);
@@ -23,13 +28,23 @@ const AutoLogout = () => {
   return null;
 };
 
-// Function to Check Token Expiry
-const isTokenExpired = (token: any) => {
+const isTokenExpired = (token: string): boolean => {
   try {
-    const decoded = JSON.parse(atob(token.split(".")[1]));
+    const payloadBase64 = token.split(".")[1];
+
+    if (!payloadBase64) {
+      return true;
+    }
+
+    const decoded = JSON.parse(atob(payloadBase64.replace(/-/g, "+").replace(/_/g, "/")));
+
+    if (!decoded.exp) {
+      return true;
+    }
+
     return decoded.exp * 1000 < Date.now();
   } catch (error) {
-    return true; // Invalid token
+    return true;
   }
 };
 

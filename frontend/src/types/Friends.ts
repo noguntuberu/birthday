@@ -1,10 +1,12 @@
 export interface Friend {
-  id: string;
-  name: string;
-  username: string;
-  email?: string;
-  dob?: string;
-  location?: string;
-  hobbies?: string;
-  profilePic?: string;
-}
+  lastName: string;  
+  firstName: string,
+  _id: string;
+    name: string;
+    username: string;
+    email?: string;
+    dob?: any;
+    location?: string;
+    hobbies?: string;
+    profilePic?: string;
+  }

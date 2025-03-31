@@ -1,41 +1,98 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Friend } from "../../../../types/Friends";
 import "./profile.css";
+import {
+  displayName,
+  calculateAge,
+  pascalCase,
+  dateFormat,
+} from "../../../../utils/helperfunctions";
+import axios from "axios";
+import { useImage } from "../../../../hooks/useImage";
+import AddFriend from "./sendRequest";
+import { useFriends } from "../../../../hooks/useFriends";
 
 const OtherUserProfile = () => {
   const { userId } = useParams();
-  const [userProfile, setUserProfile] = useState<Friend | null>(null);
+  const { friends } = useFriends();
+  const [user, setUser] = useState<any | null>(null);
   const token = localStorage.getItem("token");
+  const { othersImage, handleFetchOthersImage } = useImage();
 
   useEffect(() => {
     if (userId) {
-      fetch(`http://localhost:3000/api/otherUsers/${userId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${token}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => setUserProfile(data))
+      axios
+        .get(`http://localhost:3000/api/otherUsers/${userId}`, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((res) => res.data)
+        .then((data) => setUser(data))
         .catch((error) => console.error("Error fetching user profile:", error));
+      
+        handleFetchOthersImage(userId);
     }
   }, [userId]);
 
-  if (!userProfile) {
+  if (!user) {
     return <p>Loading profile...</p>;
   }
 
   return (
-    <div className="profile-container p-4">
-      <h2 className="text-lg font-bold">{userProfile.name}</h2>
-      <p>Username: {userProfile.username}</p>
-      <p>Email: {userProfile.email || "N/A"}</p>
-      <p>Date of Birth: {userProfile.dob || "N/A"}</p>
-      <p>Location: {userProfile.location || "N/A"}</p>
-      <p>Hobbies: {userProfile.hobbies || "N/A"}</p>
-    </div>
+    <section className="page-container">
+      <div className="page-head">
+        <p className="head-text">Profile</p>
+      </div>
+      <div className="initials">
+        <img
+          src={ othersImage || "https://fastly.picsum.photos/id/3/5000/3333.jpg?hmac=GDjZ2uNWE3V59PkdDaOzTOuV3tPWWxJSf4fNcxu4S2g" }
+          alt="no image found"
+          className="profile-img"
+        />
+      </div>
+      <p className="user-name">{user ? displayName(user) : "N/A"}</p>
+      <p className="age">
+        {user?.dob ? `${calculateAge(user.dob)} years old` : ""}
+      </p>
+      
+      {userId? <AddFriend
+      key={userId}
+      userId={userId}
+      /> : null}
+
+      <div className="details-container">
+        <div className="name firstName">
+          <p className="name-label">First Name</p>
+          <h3>{ pascalCase(user.firstName) || "N/A"}</h3>
+        </div>
+        <div className="name lastName">
+          <p className="name-label">Last Name</p>
+          <h3>{ pascalCase(user.lastName) || "N/A"}</h3>
+        </div>
+        <div className="name dob">
+          <p className="name-label">Date of Birth</p>
+          <h3>{ dateFormat(user.dob) || "N/A"}</h3>
+        </div>
+        <div className="name lastName">
+          <p className="name-label">Username</p>
+          <h3>{ user.username || "N/A"}</h3>
+        </div>
+        <div className="name username">
+          <p className="name-label">Email</p>
+          <h3>{ user.email || "N/A"}</h3>
+        </div>
+        <div className="name hobbies">
+          <p className="name-label">Hobbies</p>
+          <h3>{ user.hobbies || "N/A"}</h3>
+        </div>
+        <div className="name location">
+          <p className="name-label">Location</p>
+          <h3>{ user.location || "N/A"}</h3>
+        </div>
+      </div>
+      <div className="foot"></div>
+    </section>
   );
 };
 

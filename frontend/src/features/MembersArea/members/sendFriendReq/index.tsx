@@ -1,12 +1,14 @@
 import { sendFriendRequest } from "./sendStore";
-import "./sendRequest.css";
+import "./sendRequest.css"
+
 
 interface Props {
   receiverId: string;
+  disable: boolean;
 }
 
-export default function SendFriendRequest({ receiverId }: Props) {
-  const handleSendRequest = async () => {
+export default function SendFriendRequest({ receiverId, disable }: Props) {
+    const handleSendRequest = async () => {
     const success = await sendFriendRequest(receiverId);
     if (success) {
       alert("Friend request sent successfully!");
@@ -16,8 +18,12 @@ export default function SendFriendRequest({ receiverId }: Props) {
   };
 
   return (
-    <button onClick={handleSendRequest} className="send-btn">
-      Add
-    </button>
+    <button 
+  disabled={disable} 
+  onClick={handleSendRequest} 
+  className={disable ? "bross" : "send-btn"}
+>
+  Add
+</button>
   );
 }

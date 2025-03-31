@@ -6,6 +6,8 @@ import {
   acceptFriendRequest,
   rejectFriendRequest,
   removeFriend,
+  fetchSentRequests,
+  sendFriendRequest
 } from "../services/friendService";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +23,9 @@ export const useFriends = () => {
     accept: "",
     reject: "",
   });
+  const [sentRequests, setSentRequests] = useState<any[]>([]);
+  const [sentRequestsError, setSentRequestError] = useState("");
+  const [sendRequestsError, setSendRequestError] = useState("");
   const [friends, setFriends] = useState<any[]>([]);
   const [selectedFriend, setSelectedFriend] = useState<any | null>(null);
   const navigate = useNavigate();
@@ -44,9 +49,19 @@ export const useFriends = () => {
       }
     }
 
+    async function getSentRequest() {
+      try {
+        const result = await fetchSentRequests();
+        setSentRequests(result);
+      } catch (err: any) {
+        setSentRequestError(err.message);
+      }
+    }
+    
     const fetchData = () => {
       getFriends();
       getRequests();
+      getSentRequest();
     };
     fetchData();
 
@@ -54,22 +69,26 @@ export const useFriends = () => {
     return () => clearInterval(interval);
   }, [navigate]);
 
-  // const handleSendRequest = async (friendId: string) => {
-  //   const response = await sendFriendRequest(friendId);
-  //   if (response.ok===true) console.log("Friend request sent");
-  //   else console.error("Failed to send friend request");
-  // };
   async function handleAccept(id: any) {
     try {
       await acceptFriendRequest(id);
       setRequests((prev) => prev.filter((request) => request._id !== id));
-      console.log(id);
       toast.success("Request succfully accepted");
     } catch (error: any) {
       setRequestError({ ...requestError, accept: error.message });
-      console.log(id);
       toast.error(error.message);
       toast.error(id);
+    }
+  }
+
+  async function handleSendFriendRequest(id: any) {
+    try {
+      await sendFriendRequest(id);
+      
+      toast.success("Request succfully sent");
+    } catch (error: any) {
+      setSendRequestError(error.message);
+      toast.error(error.message);
     }
   }
 
@@ -96,16 +115,35 @@ export const useFriends = () => {
     }
   };
 
+  const handleSentRequest = async (id: string) => {
+    try {
+      await fetchSentRequests();
+      toast.success("Successfully removed friend");
+      setFriends((prev) => prev.filter((friend) => friend._id !== id));
+    } catch (err: any) {
+      setFriendError((prevError) => ({
+        ...prevError,
+        removeFriend: err.message,
+      }));
+      toast.error(err.message);
+    }
+  };
+
   return {
     requests,
     friends,
     selectedFriend,
     friendError,
     requestError,
+    sentRequests,
+    sendRequestsError,
+    setSentRequests,
+    sentRequestsError,
     setSelectedFriend,
-    // handleSendRequest,
+    handleSentRequest,
     handleAccept,
     handleReject,
     handleRemoveFriend,
+    handleSendFriendRequest
   };
 };

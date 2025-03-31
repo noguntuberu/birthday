@@ -2,9 +2,17 @@ import { useEffect, useState } from "react";
 import { useUserStore } from "./userStore";
 import "./search.css";
 import SendFriendRequest from "../sendFriendReq";
+import { useFriends } from "../../../../hooks/useFriends";
 
 export default function Search() {
   const { users, fetchUsers } = useUserStore();
+  const { friends, sentRequests}= useFriends();
+  function handleDisable(userId: any) {
+    if(sentRequests.some((e: any) => e._id === userId)||friends.some((e: any) => e._id === userId)){
+      return true;
+    }
+    return false;
+  }
   const [query, setQuery] = useState("");
   const [filteredUsers, setFilteredUsers] = useState(users);
 
@@ -49,7 +57,8 @@ export default function Search() {
                 <b>{user.username}</b>
                 <small>{user.email}</small>
               </div>
-              <SendFriendRequest receiverId={user._id} />
+              <SendFriendRequest receiverId={user._id}
+              disable={handleDisable(user._id)}  />
             </div>
           ))}
         </div>

@@ -3,7 +3,7 @@ import mongoose, { Document } from "mongoose";
 export interface IResult {
   success: boolean;
   error?: string;
-  userId?: string; // ✅ Allow userId in the response
+  userId?: string; 
 }
 
 
@@ -20,7 +20,12 @@ export interface DBUser extends Document {
   hobbies: string;
   location: string;
   friends: mongoose.Types.ObjectId[];
-  friendRequests: mongoose.Types.ObjectId[];
+  sentRequests: {
+    userId: mongoose.Types.ObjectId;
+  }[];
+  friendRequests: {
+    userId: mongoose.Types.ObjectId;
+  }[];
   notifications: {
     id: number;
     message: string;
@@ -39,4 +44,8 @@ export interface IUser {
   username: string;
   password: string;
   [key: string]: any; // Allows additional unknown properties
+}
+export interface IImage extends Document{
+  image: string;
+  user: mongoose.Types.ObjectId;
 }

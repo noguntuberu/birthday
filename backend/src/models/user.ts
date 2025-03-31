@@ -27,6 +27,7 @@ const userSchema = new Schema<DBUser>({
   hobbies: {type: String, trim: true},
   location: {type: String, trim: true},
   friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  sentRequests: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   friendRequests: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   notifications: [
     {
