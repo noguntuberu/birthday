@@ -1,9 +1,6 @@
 import User from "../models/user";
-<<<<<<< HEAD
 import { DBUser } from "types/interfaces";
-=======
 import { sendNotification } from "./notification";
->>>>>>> 71fcd8b59b76f2c622bca3722f77f7219fa925fd
 
 export const sendFriendRequest = async (senderId: any, receiverId: any) => {
   const sender = await User.findById(senderId);
@@ -73,13 +70,11 @@ export const rejectFriendRequest = async (userId: any, friendId: any) => {
 
 export const viewFriendRequests = async (userId: string) => {
   try {
-    // Find the user
     const user = await User.findById(userId) as DBUser | null;
     if (!user) {
       return { success: false, error: 'User not found' };
     }
 
-    // Populate friend requests with full user details
     const populatedRequests = await Promise.all(
       user.friendRequests.map(async (request) => {
         const requestUser = await User.findById(request);
@@ -94,7 +89,6 @@ export const viewFriendRequests = async (userId: string) => {
       })
     );
 
-    // Filter out any null results
     const validRequests = populatedRequests.filter(req => req !== null);
 
     return { 

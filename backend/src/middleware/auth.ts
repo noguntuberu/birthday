@@ -21,7 +21,7 @@ export function authMiddleware(
     const token = authHeader.replace("Bearer ", "").trim();
 
     // Ensure JWT_SECRET exists
-    const secret = process.env.JWT_SECRET;
+    const secret = process.env.JWT_SECRET || "Go-mailer";
     if (!secret) {
         res.status(500).json({ error: "Server configuration error" });
         return;

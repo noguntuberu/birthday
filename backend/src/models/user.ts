@@ -1,7 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { DBUser } from "../types/interfaces";
 
-// Define TypeScript Interface for User Document
 
 const userSchema = new Schema<DBUser>({
   firstName: { type: String, trim: true },
