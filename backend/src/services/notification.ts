@@ -35,6 +35,7 @@ export const deleteAllNotifications = async (userId:string)=>{
     return {success: false, error: "user not found"};
   }
   user.notifications=[];
+  await user.save();
   return {success: true}
  } catch (error: any) {
   return {success: false, error: error.message};

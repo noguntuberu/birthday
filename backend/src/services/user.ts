@@ -46,13 +46,12 @@ export const updateUser = async (data: any, userId: string) => {
       return { success: false, error: "User not found" };
     }
 
-    // Update only if the field is provided
-    if (firstName !== undefined) user.firstName = firstName;
-    if (lastName !== undefined) user.lastName = lastName;
-    if (gender !== undefined) user.gender = gender;
-    if (dob !== undefined) user.dob = dob;
-    if (hobbies !== undefined) user.hobbies = hobbies;
-    if (location !== undefined) user.location = location;
+    if (firstName) user.firstName = firstName;
+    if (lastName) user.lastName = lastName;
+    if (gender) user.gender = gender;
+    if (dob) user.dob = dob;
+    if (hobbies) user.hobbies = hobbies;
+    if (location) user.location = location;
 
     await user.save();
     return { success: true, message: "User updated successfully" };

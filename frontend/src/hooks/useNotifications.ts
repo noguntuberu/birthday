@@ -49,7 +49,7 @@ export const useNotifications = () => {
         ),
       );
 
-      navigate(type === "ReceivedRequest" ? "/" : `/profile/${relatedUser}`);
+      navigate(type === "ReceivedRequest" ? "/friendRequests" : `/profile/${relatedUser}`);
       toast.success("Notification marked as read!");
     } catch (error: any) {
       setError(error.message || "An error occurred");

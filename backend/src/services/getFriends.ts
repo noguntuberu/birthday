@@ -3,7 +3,7 @@ import User from "../models/user";
 class FriendService {
 	async findAllFriends(id: string) {
 		return await User.findById(id)
-			.populate("friends", "username email firstName lastName _id")
+			.populate("friends", "username email firstName dob lastName _id")
 			.select("friends");
 	}
 

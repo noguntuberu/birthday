@@ -18,7 +18,7 @@ form {
   width: 75%;
   padding: 20px;
   border: 1px solid #ccc;
-  background: #24323d;
+  background: #5f6060;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -103,7 +103,7 @@ form {
 }
 
 button {
-  background-color: #1ab188;
+  background-color: grey;
   color: #fff;
   transition: background-color 0.3s ease;
 }

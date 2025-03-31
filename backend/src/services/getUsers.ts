@@ -11,7 +11,7 @@ class UserService {
 
 	async findUsersById(id: string) {
 		return await User.findById(id)
-			.populate("friends", "username firstName lastName -_id")
+			.populate("friends", "username firstName lastName _id")
 			.populate("friendRequests")
 			.select("-_id -password -notifications -createdAt -__v");
 	}
@@ -23,7 +23,7 @@ class UserService {
 		}
 
 		return await User.findById(id)
-			.populate("friends", "username firstName lastName -_id")
+			.populate("friends", "username firstName lastName _id")
 			.populate("friendRequests")
 			.select(excludeFields);
 	}

@@ -57,35 +57,27 @@ export const getNextBirthday = (birthDate: Date | string) => {
 };
 
 export const sortFriendsByNextBirthday = (friends: any[]) => {
-  if (!friends.length) return [];
+  if (!friends || friends.length === 0) return [];
 
   const today = new Date();
   return friends
-    .filter((friend) => friend.dob)
+    .filter((friend) => friend.dob) // Ensure friend has a valid date of birth
     .map((friend) => {
-      let nextBirthday = new Date(
-        today.getFullYear(),
-        friend.dob!.getMonth(),
-        friend.dob!.getDate(),
-      );
+      const dob = new Date(friend.dob); // Ensure dob is a Date object
+
+      let nextBirthday = new Date(today.getFullYear(), dob.getMonth(), dob.getDate());
       if (nextBirthday < today) {
-        nextBirthday = new Date(
-          today.getFullYear() + 1,
-          friend.dob!.getMonth(),
-          friend.dob!.getDate(),
-        );
+        nextBirthday = new Date(today.getFullYear() + 1, dob.getMonth(), dob.getDate());
       }
-      return { name: friend.name, nextBirthday };
+
+      return { name: displayName(friend), nextBirthday, id: friend._id };
     })
     .sort((a, b) => a.nextBirthday.getTime() - b.nextBirthday.getTime());
 };
 
 export const getFirst3 = (array: any[]) => {
-  if (array?.length <= 3) return array;
-
-  const result = array?.slice(0, 3);
-  return result;
-}
+  return array.length > 3 ? array.slice(0, 3) : array;
+};
 
 export const calculateAge = (birthdate:any) => {
   if(!birthdate) return ;
@@ -116,4 +108,26 @@ export const dateFormat = (date: Date | string)=> {
   const year = parsedDate.getFullYear();
 
   return `${day}/${month}/${year}`;
+};
+
+export const formatDate = (date: Date): string => {
+  const day = date.getDate();
+  const month = date.toLocaleString("en-US", { month: "long" }); 
+  
+  const getOrdinalSuffix = (day: number) => {
+    if (day >= 11 && day <= 13) return "th"; 
+    const lastDigit = day % 10;
+    switch (lastDigit) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  };
+
+  return `${day}${getOrdinalSuffix(day)} ${month}`;
 };
