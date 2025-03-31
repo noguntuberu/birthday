@@ -1,7 +1,6 @@
 import { ToastContainer } from "react-toastify";
 import {
   displayName,
-  getInitials,
   getNextBirthday,
   getFirst3,
   sortFriendsByNextBirthday,
@@ -54,15 +53,14 @@ export default function Members() {
                           : null}
                       </div>
                       <div className="profile-pic">
-                        {image ? (
-                          <img
-                            src={image}
-                            alt="profilpiture"
-                            className="image"
-                          />
-                        ) : (
-                          getInitials(user)
-                        )}
+                        <img
+                          src={
+                            image ||
+                            "https://fastly.picsum.photos/id/3/5000/3333.jpg?hmac=GDjZ2uNWE3V59PkdDaOzTOuV3tPWWxJSf4fNcxu4S2g"
+                          }
+                          alt="no image found"
+                          className="image"
+                        />
                       </div>
                     </div>
                   </>
@@ -71,7 +69,9 @@ export default function Members() {
               <div className="bottom-container">
                 <p className="buttom-title">Your next birthday</p>
                 <h2 className="btm-txt">
-                  {user?.dob ? getNextBirthday(user.dob): "update your profile"}
+                  {user?.dob
+                    ? getNextBirthday(user.dob)
+                    : "update your profile"}
                 </h2>
               </div>
             </section>

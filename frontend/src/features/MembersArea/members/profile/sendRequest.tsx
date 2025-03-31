@@ -17,8 +17,8 @@ const AddFriend = ({ userId }: { userId: string }) => {
   }
 
   return (
-    <div className="btn-case" onClick={() => handleSendFriendRequest(userId)}>
-      <button disabled={isSent} className={isSent ?  "view-btn-disabled": "view-btn"}>
+    <div className="btn-case" >
+      <button disabled={isSent} className={isSent ?  "view-btn-disabled": "view-btn"} onClick={() => handleSendFriendRequest(userId)}>
         Add
       </button>
     </div>
