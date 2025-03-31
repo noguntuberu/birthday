@@ -1,7 +1,7 @@
 .scroll-container {
   width: 95%;
   overflow-x: auto;
-  white-space: nowrap; 
+  white-space: nowrap;
   scroll-behavior: smooth;
   background-color: rgb(66, 66, 66);
   padding: 10px;
@@ -10,11 +10,11 @@
 }
 
 .scroll-container::-webkit-scrollbar {
-  height: 8px; 
+  height: 8px;
 }
-.before-Scroll{
-  p{
-    color:aqua;
+.before-Scroll {
+  p {
+    color: aqua;
   }
 }
 
@@ -40,14 +40,13 @@
     justify-content: space-around;
     align-items: center;
     height: 100%;
-    
-    .username{
+
+    .username {
       font-size: 20px;
       color: #000;
- 
     }
-  
-    .names{
+
+    .names {
       display: block;
       color: #000;
       font-size: 23px;
@@ -55,18 +54,16 @@
       font-family: cursive;
     }
 
-    button{
-
+    button {
       width: 85px;
       margin-right: 7px;
       /* height: 40px; */
-      line-height: 10px;  /* Centers text vertically */
+      line-height: 10px; /* Centers text vertically */
       text-align: center;
       border: 5px solid white;
       border-radius: 7px;
       font-weight: 600;
       padding: auto;
-  
     }
 
     .green-btn {
@@ -87,7 +84,7 @@
   background-color: rgb(66, 66, 66);
   border-radius: 15px;
   margin: auto;
-  
+
   .initials-container {
     padding: 20px;
     display: flex;
@@ -116,7 +113,7 @@
 
   .occupation {
     padding-bottom: 20px;
-    .occupation-label{
+    .occupation-label {
       font-size: 18px;
       color: rgb(171, 241, 241);
     }
@@ -128,11 +125,10 @@
   }
 
   .info {
-
     .titles {
       padding-bottom: 20px;
       font-size: 20px;
-      span{
+      span {
         display: block;
         color: rgb(103, 212, 212);
         font-size: 18px;
@@ -154,12 +150,12 @@
   font-size: 15px;
   background-color: rgb(110, 80, 80);
 }
-.profile-container{
+.profile-container {
   margin-top: 20px;
 }
 
-@media (min-width:768px) {
-  .profile-container{
+@media (min-width: 768px) {
+  .profile-container {
     display: none;
   }
   .large-field {
@@ -176,14 +172,12 @@
   }
 }
 
-
-
-@media (max-width:768px) {
-  .large-body{
+@media (max-width: 768px) {
+  .large-body {
     display: none;
   }
 }
 
-button:hover{
+button:hover {
   cursor: pointer;
 }

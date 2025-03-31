@@ -9,8 +9,8 @@
   padding: 1.25rem 0;
 }
 
-#login_form{
-padding-top: 4rem;
+#login_form {
+  padding-top: 4rem;
 }
 
 form {
@@ -22,7 +22,7 @@ form {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.form_btn{
+.form_btn {
   width: 10rem;
   height: 2rem;
   margin: auto;
@@ -33,7 +33,7 @@ form {
   align-items: center;
 }
 
-.form_btn:hover{
+.form_btn:hover {
   background-color: #1fa984;
 }
 
@@ -47,7 +47,7 @@ form {
   font-weight: 600;
   letter-spacing: 0.3px;
   text-align: center;
-  margin: .625rem;
+  margin: 0.625rem;
 }
 
 .signin {

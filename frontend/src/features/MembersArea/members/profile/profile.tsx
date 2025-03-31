@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import { useUser } from "../../../../hooks/useUser";
 
 const ProfilePage = () => {
-  const {user, error, loading}= useUser();
+  const { user, error, loading } = useUser();
 
   return (
     <div>
@@ -40,7 +40,8 @@ const ProfilePage = () => {
                   <span>Hobbies:</span> {user?.hobbies ? user.hobbies : "N/A"}
                 </p>
                 <p className="Location titles">
-                  <span>Location:</span> {user?.location ? user.location: "N/A"}
+                  <span>Location:</span>{" "}
+                  {user?.location ? user.location : "N/A"}
                 </p>
                 <div className="before-Scroll">
                   <p>Friend Requests</p>

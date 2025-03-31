@@ -88,7 +88,9 @@ const RegisterForm = () => {
             <p className="err">{errors.passwordConfirm.message}</p>
           )}
         </div>
-        <button type="submit" className="form_btn">Submit</button>
+        <button type="submit" className="form_btn">
+          Submit
+        </button>
         <p className="signin">
           Already have an account?{" "}
           <span className="signup-link" onClick={() => navigate("/login")}>

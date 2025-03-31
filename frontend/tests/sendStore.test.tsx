@@ -26,7 +26,7 @@ describe("sendFriendRequest", () => {
           Authorization: "validToken",
           "Content-Type": "application/json",
         },
-      }
+      },
     );
   });
 

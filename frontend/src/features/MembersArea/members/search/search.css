@@ -1,38 +1,38 @@
-.search_wrapper{
+.search_wrapper {
   background-color: #ffffff;
 }
 
-.list{
+.list {
   margin-top: 1.25rem;
   color: black;
 }
 
-.input{
-  border: .0625rem solid grey;
+.input {
+  border: 0.0625rem solid grey;
   outline: none;
   border-radius: 0.625rem;
   width: 70%;
   height: 2.5rem;
   margin-top: 1.25rem;
-  padding-left: .625rem;
+  padding-left: 0.625rem;
 }
 
-.user-add-display{
+.user-add-display {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5rem;
   text-align: left;
-  margin-top: .625rem;
+  margin-top: 0.625rem;
 }
 
-.username_email{
+.username_email {
   width: 20%;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   font-size: 1rem;
 }
 
-small{
+small {
   display: block;
 }

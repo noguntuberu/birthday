@@ -1,10 +1,8 @@
-.sendRequest-wrapper{
-
+.sendRequest-wrapper {
 }
 
-.send-btn{
+.send-btn {
   width: 5rem;
-  /* height: 2rem; */
-  padding: .5rem .625rem;
+  padding: 0.5rem 0.625rem;
   background-color: #1ab188;
 }

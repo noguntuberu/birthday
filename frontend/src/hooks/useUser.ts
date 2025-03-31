@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import {getUser} from "../services/userService";
-
+import { getUser } from "../services/userService";
 
 export const useUser = () => {
   const [user, setUser] = useState<any | null>(null);
@@ -22,10 +21,9 @@ export const useUser = () => {
     fetchUser();
   }, []);
 
-
   return {
     user,
     error,
-    loading
+    loading,
   };
 };

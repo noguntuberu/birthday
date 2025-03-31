@@ -34,7 +34,7 @@ export const useFriends = () => {
         setFriendError({ ...friendError, fetchFriends: err.message });
       }
     }
-        
+
     async function getRequests() {
       try {
         const result = await fetchFriendRequests();
@@ -43,7 +43,7 @@ export const useFriends = () => {
         setRequestError({ ...requestError, fetch: err.message });
       }
     }
-    
+
     const fetchData = () => {
       getFriends();
       getRequests();
@@ -52,7 +52,6 @@ export const useFriends = () => {
 
     const interval = setInterval(fetchData, 3000);
     return () => clearInterval(interval);
-
   }, [navigate]);
 
   // const handleSendRequest = async (friendId: string) => {
