@@ -5,22 +5,24 @@ import "@testing-library/jest-dom/vitest";
 import OtherUserProfile from "../src/features/MembersArea/members/profile/OtherUserProfile";
 import React from "react";
 
-
-vi.stubGlobal("fetch", vi.fn(() =>
-  Promise.resolve({
-    json: () =>
-      Promise.resolve({
-        id: "1",
-        name: "John Doe",
-        username: "@johndoe",
-        profilePic: "/path/to/profile.jpg",
-      }),
-  })
-));
+vi.stubGlobal(
+  "fetch",
+  vi.fn(() =>
+    Promise.resolve({
+      json: () =>
+        Promise.resolve({
+          id: "1",
+          name: "John Doe",
+          username: "@johndoe",
+          profilePic: "/path/to/profile.jpg",
+        }),
+    }),
+  ),
+);
 
 describe("OtherUserProfile Component", () => {
   beforeEach(() => {
-    vi.restoreAllMocks(); 
+    vi.restoreAllMocks();
   });
 
   it("renders loading state initially", () => {
@@ -29,7 +31,7 @@ describe("OtherUserProfile Component", () => {
         <Routes>
           <Route path="/profile/:userId" element={<OtherUserProfile />} />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     expect(screen.getByText(/Loading profile.../i)).toBeInTheDocument();
   });
@@ -40,7 +42,7 @@ describe("OtherUserProfile Component", () => {
         <Routes>
           <Route path="/profile/:userId" element={<OtherUserProfile />} />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     // Wait for user data to appear
@@ -48,19 +50,24 @@ describe("OtherUserProfile Component", () => {
 
     expect(screen.getByText("John Doe")).toBeInTheDocument();
     await screen.findByText(/@johndoe/i);
-    expect(screen.getByRole("img")).toHaveAttribute("src", "/path/to/profile.jpg");
+    expect(screen.getByRole("img")).toHaveAttribute(
+      "src",
+      "/path/to/profile.jpg",
+    );
   });
 
   it("handles API errors gracefully", async () => {
-    
-    vi.stubGlobal("fetch", vi.fn(() => Promise.reject(new Error("API Error"))));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() => Promise.reject(new Error("API Error"))),
+    );
 
     render(
       <MemoryRouter initialEntries={["/profile/1"]}>
         <Routes>
           <Route path="/profile/:userId" element={<OtherUserProfile />} />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     await waitFor(() => screen.getByText("Loading profile..."));
 

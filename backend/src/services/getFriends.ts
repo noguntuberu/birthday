@@ -7,7 +7,7 @@ class FriendService {
 			.select("friends");
 	}
 
-	async findAllFriendRequests(id:string) {
+	async findAllFriendRequests(id: string) {
 		return await User.findById(id)
 			.populate("friendRequests", "username firstName lastName _id email")
 			.select("friendRequests");

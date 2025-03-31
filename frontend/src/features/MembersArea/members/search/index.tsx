@@ -22,7 +22,7 @@ export default function Search() {
   }, []);
 
   useEffect(() => {
-    if (!users || users.length === 0) return; 
+    if (!users || users.length === 0) return;
     console.log("Fetched Users:", users);
     if (query.trim() === "") {
       setFilteredUsers(users);
@@ -54,10 +54,8 @@ export default function Search() {
           {filteredUsers.map((user) => (
             <div key={user._id} className="user-add-display">
               <div className="username_email">
-              <b>
-                {user.username}
-              </b>
-              <small>{user.email}</small>
+                <b>{user.username}</b>
+                <small>{user.email}</small>
               </div>
               <SendFriendRequest receiverId={user._id}
               disable={handleDisable(user._id)}  />

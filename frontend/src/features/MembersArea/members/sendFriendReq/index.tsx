@@ -13,7 +13,7 @@ export default function SendFriendRequest({ receiverId, disable }: Props) {
     if (success) {
       alert("Friend request sent successfully!");
     } else {
-      console.log('error');
+      console.log("error");
     }
   };
 

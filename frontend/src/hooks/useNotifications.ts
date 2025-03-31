@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { 
-  deleteAllNotifications, 
-  deleteNotification, 
-  getNotifications, 
-  readAllNotifications, 
-  readNotification 
+import {
+  deleteAllNotifications,
+  deleteNotification,
+  getNotifications,
+  readAllNotifications,
+  readNotification,
 } from "../services/notificationService";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -45,8 +45,8 @@ export const useNotifications = () => {
       await readNotification(id);
       setNotifications((prev) =>
         prev.map((notif) =>
-          notif.id === id ? { ...notif, isRead: true } : notif
-        )
+          notif.id === id ? { ...notif, isRead: true } : notif,
+        ),
       );
 
       navigate(type === "ReceivedRequest" ? "/" : `/profile/${relatedUser}`);

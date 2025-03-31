@@ -86,7 +86,7 @@ export default function Sidebar() {
           </Link>
           <Link to="/login" className="link">
             <div className="content-gap" onClick={closeMenu}>
-              <Logout/>
+              <Logout />
             </div>
           </Link>
         </div>

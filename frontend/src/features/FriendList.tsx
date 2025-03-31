@@ -4,14 +4,21 @@ import { Friend } from "../types/Friends";
 interface FriendListProps {
   friends: Friend[];
   onRemove: (friendId: string) => void;
-  onSelect: (friend: Friend) => void; 
+  onSelect: (friend: Friend) => void;
 }
 
-const FriendList: React.FC<FriendListProps> = ({ friends, onRemove, onSelect }) => {
+const FriendList: React.FC<FriendListProps> = ({
+  friends,
+  onRemove,
+  onSelect,
+}) => {
   return (
     <ul>
       {friends.map((friend) => (
-        <li key={friend.id} className="py-2 border-b flex justify-between items-center">
+        <li
+          key={friend.id}
+          className="py-2 border-b flex justify-between items-center"
+        >
           <span onClick={() => onSelect(friend)}>
             {friend.name} (@{friend.username})
           </span>

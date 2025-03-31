@@ -22,8 +22,8 @@ export async function addUser(data: IUser): Promise<IResult> {
     const salt: any = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const user: any = new User({
-      username: username,
-      email: email,
+      username,
+      email,
       password: hashedPassword,
     });
 

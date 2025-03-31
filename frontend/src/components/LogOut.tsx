@@ -14,7 +14,11 @@ const Logout = () => {
     navigate("/login");
   };
 
-  return <p className="log-out" onClick={handleLogout}>{token ? "Log out": "Log in"}</p>;
+  return (
+    <p className="log-out" onClick={handleLogout}>
+      {token ? "Log out" : "Log in"}
+    </p>
+  );
 };
 
 export default Logout;

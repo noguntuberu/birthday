@@ -7,7 +7,7 @@ export const fetchFriendRequests = async () => {
   const token = localStorage.getItem("token");
   const config = {
   headers: {
-    Authorization: token 
+    Authorization: token,
   },
   };
   const response = await axios.get(`${url}/friends/requests`,config);

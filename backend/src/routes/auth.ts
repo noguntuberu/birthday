@@ -5,7 +5,7 @@ import {
   loginUser,
   controlSendFriendRequest,
   controlAcceptFriendRequest,
-  controlRejectFriendRequest,
+  controlRejectFriendRequest, controlViewFriendRequests,
   controlRemoveFriend,
 } from "../controllers/auth";
 import { authMiddleware } from "../middleware/auth";
@@ -36,5 +36,7 @@ router.patch("/notifications", authMiddleware, asyncHandler(controlReadAllNotifi
 router.patch("/notifications/:id", authMiddleware, asyncHandler(controlReadNotification));
 router.post("/notifications/:id", authMiddleware, asyncHandler(controlSendNotification));
 router.get("/otherUsers/:id", authMiddleware, asyncHandler(getOtherUserProfile));
+router.get('/friendRequest/view', authMiddleware, asyncHandler(controlViewFriendRequests));
+router.post("/friendRequest/remove", authMiddleware, asyncHandler(controlRemoveFriend));
 
 export default router;

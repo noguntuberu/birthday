@@ -39,18 +39,20 @@ export default function Members() {
 
               <div className="upcoming-bd">
                 <ul>
-                {getFirst3(sortFriendsByNextBirthday(user?.friends || [])).map(
-                  (friend) => (
+                  {getFirst3(
+                    sortFriendsByNextBirthday(user?.friends || []),
+                  ).map((friend) => (
                     <li key={friend.name}>{displayName(friend)}</li>
-                  )
-                )}
+                  ))}
                 </ul>
               </div>
 
               <div className="top-notifications">
-                {getFirst3(user?.notifications?.reverse().map((notification:any)=>{
-                  <li>{notification.message}</li>
-                }))}
+                {getFirst3(
+                  user?.notifications?.reverse().map((notification: any) => {
+                    <li>{notification.message}</li>;
+                  }),
+                )}
               </div>
             </>
           )}

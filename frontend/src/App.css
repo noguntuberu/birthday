@@ -25,10 +25,10 @@ p {
   color: initial;
 }
 
-button{
+button {
   cursor: pointer;
   border: none;
-  border-radius: .625rem;
+  border-radius: 0.625rem;
 }
 
 @media (min-width: 768px) {

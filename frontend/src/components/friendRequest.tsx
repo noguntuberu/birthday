@@ -7,12 +7,18 @@ export const FriendRequest = (props: any) => {
       <div className="item-container">
         <h1 className="username">{props.username}</h1>
         <div className="names">
-          <span>{props.firstName ? props.firstName: props.username + " "}</span>
+          <span>
+            {props.firstName ? props.firstName : props.username + " "}
+          </span>
           <span>{props.lastName ? props.lastName : ""}</span>
         </div>
         <div>
-          <button className="green-btn" onClick={() => props.onAccept()}>Accept</button>
-          <button className="red-btn" onClick={() => props.onReject()}>Reject</button>
+          <button className="green-btn" onClick={() => props.onAccept()}>
+            Accept
+          </button>
+          <button className="red-btn" onClick={() => props.onReject()}>
+            Reject
+          </button>
         </div>
       </div>
     </div>
@@ -20,7 +26,7 @@ export const FriendRequest = (props: any) => {
 };
 
 export const FriendRequests = () => {
-  const { requests, requestError, handleAccept, handleReject}= useFriends();
+  const { requests, requestError, handleAccept, handleReject } = useFriends();
 
   return (
     <div className="scroll-container">
@@ -33,8 +39,8 @@ export const FriendRequests = () => {
             username={e.username}
             firstName={e.firstName}
             lastName={e.lastName}
-            onAccept={()=>handleAccept(e._id)}
-            onReject={()=>handleReject(e._id)}
+            onAccept={() => handleAccept(e._id)}
+            onReject={() => handleReject(e._id)}
           />
         ))
       ) : (

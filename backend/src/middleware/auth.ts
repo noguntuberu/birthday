@@ -4,26 +4,37 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const SECRET_KEY = process.env.JWT_SECRET || "Go-mailer";
-
+// Remove unused SECRET_KEY declaration
 export function authMiddleware(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  const token = req.header("Authorization");
+    req: Request, 
+    res: Response, 
+    next: NextFunction
+): void {  // Change return type to void
+    const authHeader = req.header("Authorization");
+    
+    if (!authHeader) {
+        res.status(401).json({ error: "No Authorization header" });
+        return;
+    }
 
-  if (!token) {
-    res.status(401).json({ error: "Access denied" });
-    return;
-  }
+    // Extract the token - IMPORTANT
+    const token = authHeader.replace("Bearer ", "").trim();
 
-  try {
-    const verified = jwt.verify(token, SECRET_KEY as string);
-    (req as any).user = verified;
-    next();
-  } catch (error) {
-    res.status(401).json({ error: "Invalid token" });
-    return;
-  }
+    // Ensure JWT_SECRET exists
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+        res.status(500).json({ error: "Server configuration error" });
+        return;
+    }
+
+    try {
+        const verified = jwt.verify(token, secret);
+        (req as any).user = verified;
+        next();
+    } catch (error) {
+        res.status(401).json({ 
+            error: "Invalid token", 
+            details: error instanceof Error ? error.message : "Unknown error" 
+        });
+    }
 }

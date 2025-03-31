@@ -36,6 +36,7 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@types/multer": "^1.4.12",
     "@types/node-cron": "^3.0.11",
+>>>>>>> 71fcd8b59b76f2c622bca3722f77f7219fa925fd
     "@types/supertest": "^6.0.2",
     "eslint": "^9.22.0",
     "jest": "^29.7.0",

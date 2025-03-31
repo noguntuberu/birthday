@@ -113,7 +113,7 @@ const RegisterForm: React.FC = () => {
 
       <ToastContainer
         position="top-right"
-        autoClose={4000}
+        autoClose={1700}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

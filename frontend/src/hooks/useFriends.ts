@@ -39,7 +39,7 @@ export const useFriends = () => {
         setFriendError({ ...friendError, fetchFriends: err.message });
       }
     }
-        
+
     async function getRequests() {
       try {
         const result = await fetchFriendRequests();
@@ -67,7 +67,6 @@ export const useFriends = () => {
 
     const interval = setInterval(fetchData, 10000);
     return () => clearInterval(interval);
-
   }, [navigate]);
 
   async function handleAccept(id: any) {
