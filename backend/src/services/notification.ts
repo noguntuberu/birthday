@@ -78,7 +78,7 @@ export const sendNotification = async ({ receiverId, message, type, relatedUser 
     if (!user) {
       return { success: false, error: "User not found" };
     }
-    const lastNotification = user.notifications[user.notifications.length - 1];
+    const lastNotification = user.notifications[0];
     const newId = lastNotification ? lastNotification.id + 1 : 1;  
     const newNotification: any = {
       id: newId,
@@ -86,7 +86,7 @@ export const sendNotification = async ({ receiverId, message, type, relatedUser 
       type: type,
       relatedUser,
     };
-    user.notifications.push(newNotification)
+    user.notifications.unshift(newNotification)
     await user.save();
 
     return { success: true, notification: newNotification };

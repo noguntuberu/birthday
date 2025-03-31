@@ -7,6 +7,7 @@ import {
   rejectFriendRequest,
   removeFriend,
   fetchSentRequests,
+  sendFriendRequest
 } from "../services/friendService";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +25,7 @@ export const useFriends = () => {
   });
   const [sentRequests, setSentRequests] = useState<any[]>([]);
   const [sentRequestsError, setSentRequestError] = useState("");
+  const [sendRequestsError, setSendRequestError] = useState("");
   const [friends, setFriends] = useState<any[]>([]);
   const [selectedFriend, setSelectedFriend] = useState<any | null>(null);
   const navigate = useNavigate();
@@ -72,13 +74,22 @@ export const useFriends = () => {
     try {
       await acceptFriendRequest(id);
       setRequests((prev) => prev.filter((request) => request._id !== id));
-      console.log(id);
       toast.success("Request succfully accepted");
     } catch (error: any) {
       setRequestError({ ...requestError, accept: error.message });
-      console.log(id);
       toast.error(error.message);
       toast.error(id);
+    }
+  }
+
+  async function handleSendFriendRequest(id: any) {
+    try {
+      await sendFriendRequest(id);
+      
+      toast.success("Request succfully sent");
+    } catch (error: any) {
+      setSendRequestError(error.message);
+      toast.error(error.message);
     }
   }
 
@@ -126,6 +137,7 @@ export const useFriends = () => {
     friendError,
     requestError,
     sentRequests,
+    sendRequestsError,
     setSentRequests,
     sentRequestsError,
     setSelectedFriend,
@@ -133,5 +145,6 @@ export const useFriends = () => {
     handleAccept,
     handleReject,
     handleRemoveFriend,
+    handleSendFriendRequest
   };
 };

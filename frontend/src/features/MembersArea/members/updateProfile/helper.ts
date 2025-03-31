@@ -6,6 +6,7 @@ const formSchema = z.object({
   age: z.number().min(18, "Must be at least 18").optional(),
   dob: z.string().optional(),
   hobbies: z.string().optional(),
+  gender: z.enum(["male", "female"], { message: "Select a valid gender" }).nullable().optional(),
   location: z.string().optional(),
   image: z
   .custom<File | null | undefined>((file) => {

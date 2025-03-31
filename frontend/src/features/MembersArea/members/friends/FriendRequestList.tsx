@@ -1,6 +1,6 @@
 import { useFriends } from "../../../../hooks/useFriends";
-import ViewProfile from "./ViewProfile";
-import RemoveFriend from "./Remove";
+import Accept from "./Accept";
+import Reject from "./Reject";
 import "./friends.css";
 import { ToastContainer } from "react-toastify";
 import { displayName } from "../../../../utils/helperfunctions";
@@ -25,8 +25,8 @@ const FriendRequestList = () => {
                 </small>
               </div>
               <div className="buttons-case">
-                <ViewProfile userId={friend?._id} />
-                <RemoveFriend userId={friend?._id} />
+                <Accept userId={friend?._id} />
+                <Reject userId={friend?._id} />
               </div>
             </div>
           ))}

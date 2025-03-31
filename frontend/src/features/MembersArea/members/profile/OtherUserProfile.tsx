@@ -8,11 +8,16 @@ import {
   dateFormat,
 } from "../../../../utils/helperfunctions";
 import axios from "axios";
+import { useImage } from "../../../../hooks/useImage";
+import AddFriend from "./sendRequest";
+import { useFriends } from "../../../../hooks/useFriends";
 
 const OtherUserProfile = () => {
   const { userId } = useParams();
+  const { friends } = useFriends();
   const [user, setUser] = useState<any | null>(null);
   const token = localStorage.getItem("token");
+  const { othersImage, handleFetchOthersImage } = useImage();
 
   useEffect(() => {
     if (userId) {
@@ -25,6 +30,8 @@ const OtherUserProfile = () => {
         .then((res) => res.data)
         .then((data) => setUser(data))
         .catch((error) => console.error("Error fetching user profile:", error));
+      
+        handleFetchOthersImage(userId);
     }
   }, [userId]);
 
@@ -39,43 +46,49 @@ const OtherUserProfile = () => {
       </div>
       <div className="initials">
         <img
-          src="https://fastly.picsum.photos/id/3/5000/3333.jpg?hmac=GDjZ2uNWE3V59PkdDaOzTOuV3tPWWxJSf4fNcxu4S2g"
+          src={ othersImage || "https://fastly.picsum.photos/id/3/5000/3333.jpg?hmac=GDjZ2uNWE3V59PkdDaOzTOuV3tPWWxJSf4fNcxu4S2g" }
           alt="no image found"
           className="profile-img"
         />
       </div>
       <p className="user-name">{user ? displayName(user) : "N/A"}</p>
       <p className="age">
-        {user?.dob ? `${calculateAge(user.dob)} years old` : "NA"}
+        {user?.dob ? `${calculateAge(user.dob)} years old` : ""}
       </p>
+      
+      {userId? <AddFriend
+      key={userId}
+      userId={userId}
+      /> : null}
+
       <div className="details-container">
         <div className="name firstName">
           <p className="name-label">First Name</p>
-          <h3>{user ? pascalCase(user.firstName) : "N/A"}</h3>
+          <h3>{ pascalCase(user.firstName) || "N/A"}</h3>
         </div>
         <div className="name lastName">
           <p className="name-label">Last Name</p>
-          <h3>{user ? pascalCase(user.lastName) : "N/A"}</h3>
+          <h3>{ pascalCase(user.lastName) || "N/A"}</h3>
         </div>
         <div className="name dob">
           <p className="name-label">Date of Birth</p>
-          <h3>{user?.dob ? dateFormat(user.dob) : "N/A"}</h3>
+          <h3>{ dateFormat(user.dob) || "N/A"}</h3>
         </div>
         <div className="name lastName">
           <p className="name-label">Username</p>
-          <h3>{user ? user.username : "N/A"}</h3>
+          <h3>{ user.username || "N/A"}</h3>
         </div>
         <div className="name username">
           <p className="name-label">Email</p>
-          <h3>{user ? user.email : "N/A"}</h3>
+          <h3>{ user.email || "N/A"}</h3>
         </div>
         <div className="name hobbies">
           <p className="name-label">Hobbies</p>
-          <h3>{user ? user.hobbies : "N/A"}</h3>
+          <h3>{ user.hobbies || "N/A"}</h3>
         </div>
         <div className="name location">
           <p className="name-label">Location</p>
-          <h3>{user?.location ? user.location : "N/A"}</h3>
+          <h3>{ user.location || "N/A"}</h3>
         </div>
       </div>
       <div className="foot"></div>

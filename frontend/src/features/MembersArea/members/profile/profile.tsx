@@ -6,9 +6,11 @@ import {
   pascalCase,
   dateFormat,
 } from "../../../../utils/helperfunctions";
+import { useImage } from "../../../../hooks/useImage";
 
 const ProfilePage = () => {
   const { user, loading } = useUser();
+  const { image } = useImage();
 
   return (
     <section className="page-container">
@@ -21,7 +23,7 @@ const ProfilePage = () => {
           </div>
           <div className="initials">
             <img
-              src="https://fastly.picsum.photos/id/3/5000/3333.jpg?hmac=GDjZ2uNWE3V59PkdDaOzTOuV3tPWWxJSf4fNcxu4S2g"
+              src={image || "https://fastly.picsum.photos/id/3/5000/3333.jpg?hmac=GDjZ2uNWE3V59PkdDaOzTOuV3tPWWxJSf4fNcxu4S2g"}
               alt="no image found"
               className="profile-img"
             />

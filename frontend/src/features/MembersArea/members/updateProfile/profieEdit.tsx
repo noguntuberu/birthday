@@ -4,10 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import formSchema, { FormData } from "./helper";
 import { toast, ToastContainer } from "react-toastify";
 import { useState } from "react";
+import { submitEdit, submitImage } from "./edit";
 
 const FormComponent = () => {
   const [preview, setPreview] = useState<string | null>(null);
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
 
   const {
     register,
@@ -19,22 +21,29 @@ const FormComponent = () => {
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-
-    if (file) {
-      setValue("image", file);
-      setSelectedFileName(file.name);
+    if (e.target.files && e.target.files.length > 0) {
+      const selectedFile = e.target.files[0]; 
+      setFile(selectedFile);
+      setValue("image", selectedFile);
+      setSelectedFileName(selectedFile.name);
+  
       const reader = new FileReader();
       reader.onloadend = () => setPreview(reader.result as string);
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(selectedFile);
     } else {
       setSelectedFileName(null);
       setPreview(null);
+      setFile(null);
     }
   };
+  
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form submitted:", data);
+  const onSubmit = async (data: FormData) => {
+    if(file){
+      submitImage(file);
+      console.log(file);
+    }
+    submitEdit(data);
     toast.success("Profile updated successfully!");
   };
 
@@ -78,6 +87,20 @@ const FormComponent = () => {
             className="form-input"
             id="dob"
           />
+        </div>
+
+        <div className="form-group">
+          <label className="label" htmlFor="gender">
+            Gender
+          </label>
+          <select {...register("gender")} className="form-input">
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          {errors.gender && (
+            <p className="text-red-500 text-xs">{errors.gender.message}</p>
+          )}
         </div>
 
         <div className="form-group">

@@ -16,7 +16,7 @@ export const useNotifications = () => {
   const [unread, setUnread] = useState(0);
   const navigate = useNavigate();
 
-  // ✅ Fetch Notifications
+  
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
@@ -32,14 +32,14 @@ export const useNotifications = () => {
     fetchNotifications();
     const interval = setInterval(fetchNotifications, 10000);
     return () => clearInterval(interval);
-  }, []); // ❌ Removed `navigate` dependency
+  }, []); 
 
-  // ✅ Calculate Unread Count
+  
   useEffect(() => {
     setUnread(notifications.filter((n) => !n.isRead).length);
   }, [notifications]);
 
-  // ✅ Mark a Notification as Read
+
   const handleRead = async (id: number, type: string, relatedUser: string) => {
     try {
       await readNotification(id);
@@ -57,7 +57,7 @@ export const useNotifications = () => {
     }
   };
 
-  // ✅ Mark All Notifications as Read
+  
   const handleReadAll = async () => {
     try {
       await readAllNotifications();
@@ -69,7 +69,7 @@ export const useNotifications = () => {
     }
   };
 
-  // ✅ Delete a Single Notification
+  
   const handleDeleteNotification = async (id: number) => {
     try {
       await deleteNotification(id);
@@ -81,7 +81,7 @@ export const useNotifications = () => {
     }
   };
 
-  // ✅ Delete All Notifications
+ 
   const handleDeleteAllNotifications = async () => {
     try {
       await deleteAllNotifications();

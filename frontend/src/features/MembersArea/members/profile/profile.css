@@ -9,7 +9,7 @@
   z-index: -2;
 
   .page-head{
-    background-color: rgb(73, 168, 119);
+    background-color: grey;
     height: 40px;
     margin: auto;
     display: flex;
@@ -31,7 +31,7 @@
     height: 150px;
     width: 150px;
     margin: auto;
-    border: 5px solid green;
+    border: 5px solid grey;
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: 20px;
@@ -116,4 +116,37 @@
 .draggable-profile {
   position: absolute;
   cursor: grab;
+}
+
+
+.view-btn{
+  height: 30px;
+  width: 70px;
+  border: 1px solid grey;
+  background-color: grey;
+  color: white;
+  font-weight: 550;
+  margin-right: 2px;
+  margin-bottom: 6px;
+}
+
+.disabled{
+  height: 30px;
+  width: 70px;
+  border: 1px solid grey;
+  background-color: rgb(199, 199, 199);
+  color: white;
+  font-weight: 550;
+  margin-right: 2px;
+  margin-bottom: 6px;
+}
+.remove-btn{
+  height: 30px;
+  width: 70px;
+  border: 1px solid grey;
+  background-color: grey;
+  color: white;
+  font-weight: 550;
+  margin-right: 2px;
+  margin-bottom: 6px;
 }

@@ -21,7 +21,6 @@ const userSchema = new Schema<DBUser>({
     trim: true,
     lowercase: true,
   },
-  profilePic: String,
   password: { type: String, required: true, minlength: 6 },
   dob: { type: Date },
   gender: { type: String, trim: true, enum: ["male", "female"] },
